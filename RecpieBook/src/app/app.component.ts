@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component} from '@angular/core';
+import { Recipe } from './recipes/recipe-list/recipe.model';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,14 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'RecpieBook';
+  loadedFeature = 'home'
+  custRecipe : Recipe 
+
+  navValue(feature: string) {
+    this.loadedFeature = feature;
+  }
+  onCustAdded(content: Recipe){
+    this.custRecipe = content;
+    this.loadedFeature = 'recipe'
+  }
 }
