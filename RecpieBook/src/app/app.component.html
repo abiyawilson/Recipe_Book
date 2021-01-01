@@ -3,11 +3,9 @@
     <div class="row">
         <div class="col-xl">
             <app-home *ngIf="loadedFeature === 'home'"></app-home>
-            <app-recipes *ngIf="loadedFeature === 'recipe'"
-                [customerAdded] = "custRecipe" ></app-recipes>
+            <app-recipes *ngIf="loadedFeature === 'recipe'" ></app-recipes>
             <app-contributor-content  
                 *ngIf="loadedFeature === 'contributions'"
-                (recipeAdded) = onCustAdded($event)
             ></app-contributor-content>
         </div>
     </div>
