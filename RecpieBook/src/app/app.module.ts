@@ -11,6 +11,7 @@ import { HeadersComponent } from './shared/headers/headers.component';
 import { CommonModule } from '@angular/common';
 import { ContributorContentComponent } from './contributions/contributor-content/contributor-content.component';
 import { HomeComponent } from './shared/home/home.component';
+import { RecipesService } from './recipes.service';
 
 
 @NgModule({
@@ -31,7 +32,7 @@ import { HomeComponent } from './shared/home/home.component';
     BrowserModule,
     CommonModule 
   ],
-  providers: [],
+  providers: [RecipesService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
