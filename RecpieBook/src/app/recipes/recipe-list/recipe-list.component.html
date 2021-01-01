@@ -1,21 +1,9 @@
 <div class="row">
     <div class="col-xs-12">
-    <ul>
-        <li *ngFor = "let recipe of recipes">
-            <div class="card" style="width: 18rem; height: 20rem;">
-                <img class="card-img-top" [src]="recipe.image" alt="Card image cap" height="130em" width="50em">
-                <div class="card-body">
-                <h5 class="card-title" >{{recipe.name}}</h5>
-                <p class="card-text">{{recipe.description}}</p>
-                <a href="#" class="btn btn-primary"(click)="show(recipe.description)">View</a>
-            </div>
-            </div>
-        </li>
-    </ul>
+        <app-recipe-item  *ngFor = "let recipes of recipes" [recipe]="recipes"
+        (recipeSelected)="onSelected(recipes)"></app-recipe-item>
     </div>
 </div>
-<div class="row">
-    <div class="col-xs-12">
-       <p *ngIf="selectedStatus">{{selectedRecipe}}</p> 
-    </div>
-</div>
+  
+
+

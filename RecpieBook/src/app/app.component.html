@@ -1,8 +1,14 @@
-<app-headers></app-headers>
+<app-headers (selectedNav)="navValue($event)"></app-headers>
 <div class="container">
     <div class="row">
-        <div class="col-xs-12">
-            <app-recipes></app-recipes>
+        <div class="col-xl">
+            <app-home *ngIf="loadedFeature === 'home'"></app-home>
+            <app-recipes *ngIf="loadedFeature === 'recipe'"
+                [customerAdded] = "custRecipe" ></app-recipes>
+            <app-contributor-content  
+                *ngIf="loadedFeature === 'contributions'"
+                (recipeAdded) = onCustAdded($event)
+            ></app-contributor-content>
         </div>
     </div>
 </div>

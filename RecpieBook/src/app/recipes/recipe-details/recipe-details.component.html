@@ -1,1 +1,22 @@
-<p>recipe-details works!</p>
+<div class="container" style="margin-left: 30px;margin-top: 10px;">
+<div class="row"  >
+    <div class="col-xl" >
+      <img
+        [src]="recipe.image"
+        alt="{{ recipe.name }}"
+        class="img-responsive"
+        style="max-height: 300px;max-width: 400px;">
+        <div class="row" >
+            <div class="col-xl">
+                <h1>{{ recipe.name }}</h1>
+            </div>
+        </div>
+        <div class="row" >
+            <div class="col-xs-12" style="text-align:center">
+                <p>{{ recipe.description }}</p>
+            </div>
+        </div>
+    </div>
+  </div>
+ </div>
+  

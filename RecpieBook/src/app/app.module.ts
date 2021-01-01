@@ -8,8 +8,9 @@ import { RecipeListComponent } from './recipes/recipe-list/recipe-list.component
 import { FootersComponent } from './shared/footers/footers.component';
 import { RecipeItemComponent } from './recipes/recipe-list/recipe-item/recipe-item.component';
 import { HeadersComponent } from './shared/headers/headers.component';
-import { ContributionsComponent } from './contributions/contributions.component';
 import { CommonModule } from '@angular/common';
+import { ContributorContentComponent } from './contributions/contributor-content/contributor-content.component';
+import { HomeComponent } from './shared/home/home.component';
 
 
 @NgModule({
@@ -21,7 +22,10 @@ import { CommonModule } from '@angular/common';
     RecipeItemComponent,
     HeadersComponent,
     FootersComponent,
-    ContributionsComponent
+    ContributorContentComponent,
+    HomeComponent,
+    
+   
   ],
   imports: [
     BrowserModule,
