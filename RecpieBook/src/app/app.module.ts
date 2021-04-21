@@ -12,6 +12,7 @@ import { CommonModule } from '@angular/common';
 import { ContributorContentComponent } from './contributions/contributor-content/contributor-content.component';
 import { HomeComponent } from './shared/home/home.component';
 import { RecipesService } from './recipes.service';
+import { LoggerService } from './logger.service';
 
 
 @NgModule({
@@ -32,7 +33,7 @@ import { RecipesService } from './recipes.service';
     BrowserModule,
     CommonModule 
   ],
-  providers: [RecipesService],
+  providers: [RecipesService, LoggerService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

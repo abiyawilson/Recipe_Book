@@ -22,7 +22,8 @@ export class ContributorContentComponent implements OnInit {
     const cDesc = this.descInputRef.nativeElement.value;
     const cimg = this.imageInputRef.nativeElement.value;
     const newRecipe = new Recipe(cName,cDesc,cimg)
-    this.recipeService.recipes.push(newRecipe)
-    this.recipeService.recipeAdded.emit("Added");
+    // this.recipeService.recipes.push(newRecipe)
+    this.recipeService.addRecipe(newRecipe)
+    // this.recipeService.recipeAdded.emit("Added");
   }
 }
