@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { LoggerService } from 'src/app/logger.service';
 import { RecipesService } from 'src/app/recipes.service';
 import { Recipe } from '../recipe.model';
 
@@ -10,7 +11,7 @@ import { Recipe } from '../recipe.model';
 export class RecipeItemComponent implements OnInit {
   recipe: {name:string, description:string, image:string} [] = []
   
-  constructor(private recipeService : RecipesService) { }
+  constructor(private recipeService : RecipesService, private loggerService:LoggerService) { }
  
   ngOnInit(): void {
     this.recipe = this.recipeService.recipes
@@ -18,5 +19,6 @@ export class RecipeItemComponent implements OnInit {
   
   show(recipe:Recipe){
     this.recipeService.recipeSelected.emit(recipe);
+    this.loggerService.addLog("View Description Clicked")
   }
 }

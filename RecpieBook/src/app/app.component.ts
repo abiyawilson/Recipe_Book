@@ -9,16 +9,17 @@ import { Recipe } from './recipes/recipe-list/recipe.model';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit{
-  loadedFeature = 'home'
-  custRecipe : Recipe 
+  loadedFeature = 'home';
+  custRecipe : Recipe;
   constructor(private recipeService: RecipesService){
 
   }
   ngOnInit(){
-    this.recipeService.recipeAdded.subscribe(
-      (status:string) => this.onCustAdded(status))
+    this.recipeService.recipeAdded.subscribe (
+      (status: string) => this.onCustAdded(status))
+   
   }
-  navValue(feature: string) {
+  navValue(feature: string){
     this.loadedFeature = feature;
   }
   onCustAdded(content:string){
