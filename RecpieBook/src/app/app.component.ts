@@ -10,21 +10,20 @@ import { Recipe } from './recipes/recipe-list/recipe.model';
 })
 export class AppComponent implements OnInit{
   loadedFeature = 'home';
-  custRecipe : Recipe;
+  custRecipe: Recipe;
   constructor(private recipeService: RecipesService){
+  }
 
+  ngOnInit(): void{
   }
-  ngOnInit(){
-    this.recipeService.recipeAdded.subscribe (
-      (status: string) => this.onCustAdded(status))
-   
-  }
-  navValue(feature: string){
+
+  navValue(feature: string): void{
     this.loadedFeature = feature;
   }
-  onCustAdded(content:string){
-    if(content){
-      this.loadedFeature = 'recipe'
+
+  onCustAdded(content: string): void{
+    if (content) {
+      this.loadedFeature = 'recipe';
     }
   }
 }

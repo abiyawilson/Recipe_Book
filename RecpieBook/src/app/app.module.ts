@@ -13,6 +13,11 @@ import { ContributorContentComponent } from './contributions/contributor-content
 import { HomeComponent } from './shared/home/home.component';
 import { RecipesService } from './recipes.service';
 import { LoggerService } from './logger.service';
+import { RoutingModule } from './app-routing.module';
+import { LoginComponent } from './login/login.component';
+import { NotFoundComponent } from './not-found/not-found.component';
+
+
 
 
 @NgModule({
@@ -26,14 +31,18 @@ import { LoggerService } from './logger.service';
     FootersComponent,
     ContributorContentComponent,
     HomeComponent,
-    
-   
+    LoginComponent,
+    NotFoundComponent
   ],
+
   imports: [
     BrowserModule,
-    CommonModule 
+    CommonModule ,
+    RoutingModule
   ],
+
   providers: [RecipesService, LoggerService],
   bootstrap: [AppComponent]
 })
+
 export class AppModule { }

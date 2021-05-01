@@ -1,13 +1,3 @@
-<app-headers (selectedNav)="navValue($event)"></app-headers>
-<div class="container">
-    <div class="row">
-        <div class="col-xl">
-            <app-home *ngIf="loadedFeature === 'home'"></app-home>
-            <app-recipes *ngIf="loadedFeature === 'recipe'" ></app-recipes>
-            <app-contributor-content  
-                *ngIf="loadedFeature === 'contributions'"
-            ></app-contributor-content>
-        </div>
-    </div>
-</div>
+<app-headers></app-headers>
+<router-outlet></router-outlet>
 <app-footers></app-footers>
