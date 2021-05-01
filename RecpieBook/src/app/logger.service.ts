@@ -7,7 +7,7 @@ export class LoggerService {
 
   constructor() { }
 
-  addLog(msg:string){
-    console.log(msg)
+  addLog(msg: string): void{
+    console.log(msg);
   }
 }

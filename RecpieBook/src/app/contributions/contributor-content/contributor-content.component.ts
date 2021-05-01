@@ -17,13 +17,14 @@ export class ContributorContentComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  onAddItem(){
+
+  onAddItem(): void{
     const cName = this.nameInputRef.nativeElement.value;
     const cDesc = this.descInputRef.nativeElement.value;
     const cimg = this.imageInputRef.nativeElement.value;
-    const newRecipe = new Recipe(cName,cDesc,cimg)
+    const newRecipe = new Recipe(cName, cDesc, cimg);
     // this.recipeService.recipes.push(newRecipe)
-    this.recipeService.addRecipe(newRecipe)
+    this.recipeService.addRecipe(newRecipe);
     // this.recipeService.recipeAdded.emit("Added");
   }
 }

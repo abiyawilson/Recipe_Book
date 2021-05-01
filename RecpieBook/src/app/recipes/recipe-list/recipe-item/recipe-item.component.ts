@@ -9,16 +9,16 @@ import { Recipe } from '../recipe.model';
   styleUrls: ['./recipe-item.component.css']
 })
 export class RecipeItemComponent implements OnInit {
-  recipe: {name:string, description:string, image:string} [] = []
-  
-  constructor(private recipeService : RecipesService, private loggerService:LoggerService) { }
- 
+  recipe: {name: string, description: string, image: string} [] = [];
+
+  constructor(private recipeService: RecipesService, private loggerService: LoggerService) { }
+
   ngOnInit(): void {
-    this.recipe = this.recipeService.recipes
+    this.recipe = this.recipeService.recipes;
   }
-  
-  show(recipe:Recipe){
+
+  show(recipe: Recipe): void{
     this.recipeService.recipeSelected.emit(recipe);
-    this.loggerService.addLog("View Description Clicked")
+    this.loggerService.addLog('View Description Clicked');
   }
 }

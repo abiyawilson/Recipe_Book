@@ -9,15 +9,16 @@ import { Recipe } from '../recipe-list/recipe.model';
 })
 export class RecipeDetailsComponent implements OnChanges, OnInit {
   recipe: Recipe;
-  
+
   constructor(private recipeService: RecipesService) { }
 
   ngOnInit(): void {
     this.recipeService.recipeSelected.subscribe(
-      (recipes:Recipe) => this.recipe = recipes
-    )
+      (recipes: Recipe) => this.recipe = recipes
+    );
   }
+
   ngOnChanges(changes: SimpleChanges): void {
-    console.log(JSON.stringify(changes))
+    console.log(JSON.stringify(changes));
   }
 }
