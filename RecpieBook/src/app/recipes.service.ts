@@ -1,3 +1,4 @@
+import { toPublicName } from '@angular/compiler/src/i18n/serializers/xmb';
 import { EventEmitter, Injectable } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { LoggerService } from './logger.service';
@@ -11,7 +12,7 @@ export class RecipesService {
     new Recipe ('Halwa', 'A sweet that will melt in your mouth', 'https://1.bp.blogspot.com/-eHsqKLHqT6k/Xee9H2d_b2I/AAAAAAAAYAs/MlLdNLRwrVsJeFWWgW5PAzeasVvAcZIOQCLcBGAsYHQ/s1600/Kerala%2Bkarutha%2Bhalwa%2B10.JPG')
   ];
 
-  recipeSelected = new EventEmitter<Recipe>();
+  // recipeSelected = new EventEmitter<Recipe>();
   login = new EventEmitter<boolean>();
 
   constructor(private loggerService: LoggerService, private route: Router,
@@ -22,4 +23,10 @@ export class RecipesService {
     this.loggerService.addLog('Customer Recipe Added');
     this.route.navigate(['../recipe/recipelist'], {relativeTo: this.router});
   }
+
+  getRecipe(name): Recipe{
+    let obj = this.recipes.find(o => o.name === name);
+    return obj 
+  }
+
 }

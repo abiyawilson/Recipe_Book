@@ -17,8 +17,8 @@ export class RecipeItemComponent implements OnInit {
     this.recipe = this.recipeService.recipes;
   }
 
-  show(recipe: Recipe): void{
-    this.recipeService.recipeSelected.emit(recipe);
-    this.loggerService.addLog('View Description Clicked');
-  }
+  // show(recipe: Recipe): void{
+  //   this.recipeService.recipeSelected.emit(recipe);
+  //   this.loggerService.addLog('View Description Clicked');
+  // }
 }

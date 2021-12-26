@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit {
     this.password = this.passwordInputRef.nativeElement.value;
 
     if (this.uname === 'user' && this.password === 'tiger') {
-      this.recipeService.login.emit(true);
+      // this.recipeService.login.emit(true);
       this.route.navigate(['../contributor'], {relativeTo: this.router});
     }
   }
