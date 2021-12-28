@@ -5,7 +5,7 @@ import { RecipesService } from '../recipes.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
   @ViewChild('username', { static: false }) usernameInputRef: ElementRef;
@@ -14,26 +14,25 @@ export class LoginComponent implements OnInit {
   uname: string;
   password: string;
 
-  constructor(private route: Router, private router: ActivatedRoute,
-              private recipeService: RecipesService) {
+  constructor(
+    private route: Router,
+    private router: ActivatedRoute,
+    private recipeService: RecipesService
+  ) {}
 
-   }
+  ngOnInit(): void {}
 
-  ngOnInit(): void {
-  }
-
-  login(): void{
+  login(): void {
     this.uname = this.usernameInputRef.nativeElement.value;
     this.password = this.passwordInputRef.nativeElement.value;
 
     if (this.uname === 'user' && this.password === 'tiger') {
-      // this.recipeService.login.emit(true);
-      this.route.navigate(['../contributor'], {relativeTo: this.router});
+      this.recipeService.login.next(true);
+      this.route.navigate(['../contributor'], { relativeTo: this.router });
     }
   }
 
-  cancel(): void{
-    this.route.navigate(['../home'], {relativeTo: this.router});
+  cancel(): void {
+    this.route.navigate(['../home'], { relativeTo: this.router });
   }
-
 }

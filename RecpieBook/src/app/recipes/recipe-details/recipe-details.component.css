@@ -1,0 +1,31 @@
+.left,
+.right {
+  width: 50%;
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  overflow-x: hidden;
+}
+
+.left {
+  left: 0;
+  margin-top: 15%;
+  margin-left: 10%;
+}
+
+.right {
+  right: 0;
+  margin-top: 5%;
+  padding-right: 20px;
+  text-align: justify;
+  font-family: "Times New Roman", Times, serif;
+}
+
+.image {
+  max-height: 50%;
+  max-width: 50%;
+}
+
+button {
+  margin-top: 10px;
+}
