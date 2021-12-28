@@ -4,30 +4,33 @@ import { ContributorContentComponent } from './contributions/contributor-content
 import { LoginComponent } from './login/login.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { RecipeDetailsComponent } from './recipes/recipe-details/recipe-details.component';
-import { RecipeListComponent } from './recipes/recipe-list/recipe-list.component';
+import { RecipeItemComponent } from './recipes/recipe-list/recipe-item/recipe-item.component';
 import { RecipesComponent } from './recipes/recipes.component';
 import { HomeComponent } from './shared/home/home.component';
 
 const appRoutes: Routes = [
-  {path: '', component: HomeComponent},
-  {path: 'home', component: HomeComponent},
-  {path: 'recipe', component: RecipesComponent, children: [
-    {path: 'recipelist', component: RecipeListComponent, children:[
-      {path: ':name', component: RecipeDetailsComponent}
-    ]}
-  ]},
-  {path: 'contributor', component: ContributorContentComponent},
-  {path: 'login', component: LoginComponent},
-  {path: 'not-found' , component: NotFoundComponent, data: {message: 'Page Not Found!!!'}},
-  {path: '**' , redirectTo: 'not-found'},
+  { path: '', component: HomeComponent },
+  { path: 'home', component: HomeComponent },
+  {
+    path: 'recipe',
+    component: RecipesComponent,
+    children: [
+      { path: 'recipelist', component: RecipeItemComponent },
+      { path: ':name', component: RecipeDetailsComponent },
+    ],
+  },
+  { path: 'contributor', component: ContributorContentComponent },
+  { path: 'login', component: LoginComponent },
+  {
+    path: 'not-found',
+    component: NotFoundComponent,
+    data: { message: 'Page Not Found!!!' },
+  },
+  { path: '**', redirectTo: 'not-found' },
 ];
 
 @NgModule({
-  imports: [
-    RouterModule.forRoot(appRoutes)
-  ],
-  exports: [
-      RouterModule
-  ]
+  imports: [RouterModule.forRoot(appRoutes)],
+  exports: [RouterModule],
 })
-export class RoutingModule { }
+export class RoutingModule {}

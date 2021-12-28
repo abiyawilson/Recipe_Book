@@ -1,22 +1,54 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary" >
-    <img src="https://www.pngitem.com/pimgs/m/98-985804_old-books-no-background-image-pile-of-books.png" width="50" height="50" class="d-inline-block align-top" alt="">
-    <h2 class="navbar-brand" >Recipie Book</h2>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+<nav class="navbar navbar-expand-lg navbar-light bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand text-light" href="#">Recipie Book</a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarNavAltMarkup"
+      aria-controls="navbarNavAltMarkup"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
       <span class="navbar-toggler-icon"></span>
     </button>
-  
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item">
-          <a class="nav-link"  style="color: #e3f2fd;" routerLinkActive="active" routerLink="/home">Home</a>
-        </li>
-        <li class="nav-item" >
-          <a class="nav-link"  style="color: #e3f2fd;"  routerLink="/recipe/recipelist" routerLinkActive="active" >Recipes</a>
-        </li>
-        <li class="nav-item">
-          <a  *ngIf = "!login" class="nav-link" style="color: #e3f2fd;" routerLink="/login" routerLinkActive="active" >Add Yours!!</a>
-          <a  *ngIf = "login" class="nav-link" style="color: #e3f2fd;" routerLink="/contributor" routerLinkActive="active" >Add Yours!!</a>
-        </li>
-      </ul>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <a
+          class="nav-link text-light"
+          routerLinkActive="active"
+          routerLink="/home"
+          >Home</a
+        >
+        <a
+          class="nav-link text-light"
+          routerLink="/recipe/recipelist"
+          routerLinkActive="active"
+          >Recipes</a
+        >
+        <a
+          *ngIf="!login"
+          class="nav-link text-light"
+          routerLink="/login"
+          routerLinkActive="active"
+          >Sign In</a
+        >
+        <a
+          *ngIf="login"
+          class="nav-link text-light"
+          routerLink="/contributor"
+          routerLinkActive="active"
+          >Contribute</a
+        >
+        <a
+          *ngIf="login"
+          class="nav-link text-light"
+          routerLink="/home"
+          routerLinkActive="active"
+          (click)="onReset()"
+          >Sign Out</a
+        >
+      </div>
     </div>
+  </div>
 </nav>

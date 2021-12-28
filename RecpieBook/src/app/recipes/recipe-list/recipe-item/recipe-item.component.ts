@@ -1,24 +1,26 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { LoggerService } from 'src/app/logger.service';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { RecipesService } from 'src/app/recipes.service';
-import { Recipe } from '../recipe.model';
 
 @Component({
   selector: 'app-recipe-item',
   templateUrl: './recipe-item.component.html',
-  styleUrls: ['./recipe-item.component.css']
+  styleUrls: ['./recipe-item.component.css'],
 })
 export class RecipeItemComponent implements OnInit {
-  recipe: {name: string, description: string, image: string} [] = [];
+  recipe: { name: string; description: string; image: string }[] = [];
 
-  constructor(private recipeService: RecipesService, private loggerService: LoggerService) { }
+  constructor(
+    private recipeService: RecipesService,
+    private route: Router,
+    private router: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
     this.recipe = this.recipeService.recipes;
   }
 
-  // show(recipe: Recipe): void{
-  //   this.recipeService.recipeSelected.emit(recipe);
-  //   this.loggerService.addLog('View Description Clicked');
-  // }
+  getRecipe(name: string) {
+    this.route.navigate(['../' + name], { relativeTo: this.router });
+  }
 }
