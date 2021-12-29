@@ -6,6 +6,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { RecipeDetailsComponent } from './recipes/recipe-details/recipe-details.component';
 import { RecipeItemComponent } from './recipes/recipe-list/recipe-item/recipe-item.component';
 import { RecipesComponent } from './recipes/recipes.component';
+import { UpdateRecipeComponent } from './recipes/update-recipe/update-recipe.component';
 import { HomeComponent } from './shared/home/home.component';
 
 const appRoutes: Routes = [
@@ -16,11 +17,11 @@ const appRoutes: Routes = [
     component: RecipesComponent,
     children: [
       { path: 'recipelist', component: RecipeItemComponent },
-      { path: ':name', component: RecipeDetailsComponent },
+      { path: ':id', component: RecipeDetailsComponent },
     ],
   },
   { path: 'contributor', component: ContributorContentComponent },
-  { path: 'updateRecipe/:name', component: ContributorContentComponent },
+  { path: 'updateRecipe/:id', component: UpdateRecipeComponent },
   { path: 'login', component: LoginComponent },
   {
     path: 'not-found',

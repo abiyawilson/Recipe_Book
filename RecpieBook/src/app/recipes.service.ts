@@ -9,10 +9,10 @@ import { Recipe } from './recipes/recipe-list/recipe.model';
 export class RecipesService {
   recipes: Recipe[] = [
     new Recipe(
-       1,
+      1,
       'Dosa',
       'Abiya Wilson',
-      'A Kerala food that makes your tounge watery by its taste',
+      'A Kerala food that makes your tongue watery by its taste',
       'https://vismaifood.com/storage/app/uploads/public/8b4/19e/427/thumb__700_0_0_0_auto.jpg',
       [
         '3/4 cup Parboiled Rice (idli-dosa rice)',
@@ -78,9 +78,9 @@ export class RecipesService {
     ),
   ];
 
-  itemNumber = this.recipes.length
+  itemNumber = this.recipes.length;
   login = new Subject<boolean>();
-  userLoggedIn:boolean = false
+  userLoggedIn: boolean = false;
 
   constructor(
     private loggerService: LoggerService,
@@ -94,22 +94,20 @@ export class RecipesService {
     this.route.navigate(['../recipe/recipelist'], { relativeTo: this.router });
   }
 
-  updateRecipe(changedRecipe: Recipe): void{
-    // this.recipes.splice(changedRecipe.id-1)
-    // this.recipes.push(changedRecipe);
-    for(let item of this.recipes){
-      if(item.id === changedRecipe.id){
-       for(let key in item){
-          item[key] = changedRecipe[key]
-       }
+  updateRecipe(changedRecipe: Recipe): void {
+    for (let item of this.recipes) {
+      if (item.id === changedRecipe.id) {
+        for (let key in item) {
+          item[key] = changedRecipe[key];
+        }
       }
     }
     this.loggerService.addLog('Recipe Updated');
     this.route.navigate(['../recipe/recipelist'], { relativeTo: this.router });
   }
 
-  getRecipe(name): Recipe {
-    let obj = this.recipes.find((o) => o.name === name);
+  getRecipe(id:string): Recipe {
+    let obj = this.recipes.find((o) => o.id === parseInt(id));
     return obj;
   }
 }

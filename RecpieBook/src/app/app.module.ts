@@ -16,6 +16,7 @@ import { RoutingModule } from './app-routing.module';
 import { LoginComponent } from './login/login.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { UpdateRecipeComponent } from './recipes/update-recipe/update-recipe.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     HomeComponent,
     LoginComponent,
     NotFoundComponent,
+    UpdateRecipeComponent,
   ],
 
   imports: [BrowserModule, CommonModule, RoutingModule, FormsModule, ReactiveFormsModule] ,

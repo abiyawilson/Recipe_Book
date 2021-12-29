@@ -10,7 +10,6 @@ import { Recipe } from '../recipe-list/recipe.model';
 })
 export class RecipeDetailsComponent implements OnChanges, OnInit {
   recipe: Recipe;
-  name: string;
   
   login: boolean = false;
 
@@ -22,7 +21,7 @@ export class RecipeDetailsComponent implements OnChanges, OnInit {
 
   ngOnInit(): void {
     this.route.params.subscribe((param: Params) => {
-      this.recipe = this.recipeService.getRecipe(param.name);
+      this.recipe = this.recipeService.getRecipe(param.id);
       this.login =  this.recipeService.userLoggedIn
     });
 
@@ -37,6 +36,6 @@ export class RecipeDetailsComponent implements OnChanges, OnInit {
   }
 
   onUpdate() :void {
-    this.router.navigate(['../../updateRecipe/'+this.recipe.name], { relativeTo: this.route });
+    this.router.navigate(['../../updateRecipe/'+this.recipe.id], { relativeTo: this.route });
   }
 }
