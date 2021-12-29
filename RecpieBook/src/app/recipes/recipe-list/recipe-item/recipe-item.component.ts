@@ -21,7 +21,7 @@ export class RecipeItemComponent implements OnInit {
     this.recipe = this.recipeService.recipes;
   }
 
-  getRecipe(name: string) {
-    this.route.navigate(['../' + name], { relativeTo: this.router });
+  getRecipe(id: string) {
+    this.route.navigate(['../' + id], { relativeTo: this.router });
   }
 }

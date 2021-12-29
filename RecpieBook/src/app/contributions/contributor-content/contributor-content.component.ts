@@ -1,7 +1,6 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { NgForm } from '@angular/forms';
-import { ActivatedRoute, NavigationStart, Params, Router } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { Component, OnInit} from '@angular/core';
+import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { RecipesService } from 'src/app/recipes.service';
 import { Recipe } from 'src/app/recipes/recipe-list/recipe.model';
 
@@ -12,7 +11,6 @@ import { Recipe } from 'src/app/recipes/recipe-list/recipe.model';
 })
 export class ContributorContentComponent implements OnInit {
   
-  @ViewChild('contribution', { static: false }) contributionForm: NgForm;
 
   itemNumber: number
   recipe: Recipe;
@@ -22,9 +20,9 @@ export class ContributorContentComponent implements OnInit {
   image:string
   integridents:[]
   procedure:[]
-  onUpdate:boolean = false
   login:boolean = false
-  subscription: Subscription;
+
+  contributionForm : FormGroup;
 
   constructor(private recipeService: RecipesService, private route: ActivatedRoute , private router:Router) {
   }
@@ -34,16 +32,20 @@ export class ContributorContentComponent implements OnInit {
     if(!this.login){
       this.router.navigate(['/login']);
     }
-    this.route.params.subscribe((param: Params) => {
-      this.recipe = this.recipeService.getRecipe(param.name);
-      if (this.recipe) {
-        this.onUpdate = true
-      }
-    });
+
+    this.contributionForm = new FormGroup ({
+      'recipename': new FormControl(null, [Validators.required]),
+      'author': new FormControl(null, [Validators.required]),
+      'description': new FormControl(null, [Validators.required]),
+      'image': new FormControl(null, [Validators.required]),
+      'integridents': new FormArray([]),
+      'procedure': new FormArray([])
+
+    })
   }
 
   onAddRecipe(): void {
-    this.itemNumber = this.recipeService.itemNumber
+    this.itemNumber = this.recipeService.itemNumber + 1
     this.recipename = this.contributionForm.value.recipename
     this.author = this.contributionForm.value.author
     this.description = this.contributionForm.value.description
@@ -52,27 +54,33 @@ export class ContributorContentComponent implements OnInit {
     this.procedure = this.contributionForm.value.procedure
     const newRecipe = new Recipe(this.itemNumber, this.recipename, this.author, this.description, this.image, 
       this.integridents, this.procedure);
-    if (!this.onUpdate) {
-     this.recipeService.addRecipe(newRecipe);
-    }
-    else {
-      this.recipeService.updateRecipe(newRecipe);
-    }
+    
+      this.recipeService.addRecipe(newRecipe);
+    
   }
 
   onReset():void {
     this.contributionForm.reset();
   }
 
-  loadContents(): void {
-    this.contributionForm.form.patchValue({
-      itemNumber: this.itemNumber,
-      recipename: this.recipe.name,
-      author: this.recipe.author,
-      description: this.recipe.description,
-      image: this.recipe.image,
-      integridents:this.recipe.ingredients,
-      procedure: this.recipe.procedure
-    });
+  getIntgeridentsControls() {
+    return (<FormArray>this.contributionForm.get('integridents')).controls;
   }
+
+  onAddIntgerident() {
+    const control = new FormControl(null, Validators.required);
+    (<FormArray>this.contributionForm.get('integridents')).push(control);
+  }
+
+  getProcedureControls() {
+    return (<FormArray>this.contributionForm.get('procedure')).controls;
+  }
+
+  onAddProcedure() {
+    const control = new FormControl(null, Validators.required);
+    (<FormArray>this.contributionForm.get('procedure')).push(control);
+  }
+
+
+  
 }
