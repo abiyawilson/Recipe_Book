@@ -23,5 +23,6 @@ export class HeadersComponent implements OnInit {
 
   onReset(): void {
     this.login = false;
+    this.recipeService.userLoggedIn = false
   }
 }

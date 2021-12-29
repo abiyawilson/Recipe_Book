@@ -9,7 +9,9 @@ import { Recipe } from './recipes/recipe-list/recipe.model';
 export class RecipesService {
   recipes: Recipe[] = [
     new Recipe(
+       1,
       'Dosa',
+      'Abiya Wilson',
       'A Kerala food that makes your tounge watery by its taste',
       'https://vismaifood.com/storage/app/uploads/public/8b4/19e/427/thumb__700_0_0_0_auto.jpg',
       [
@@ -40,7 +42,9 @@ export class RecipesService {
       ]
     ),
     new Recipe(
+      2,
       'Black Halwa',
+      'Abiya Wilson',
       'A sweet that will melt in your mouth',
       'https://m.media-amazon.com/images/I/51ZEPhgSy5L.jpg',
       [
@@ -74,8 +78,9 @@ export class RecipesService {
     ),
   ];
 
-  // recipeSelected = new EventEmitter<Recipe>();
+  itemNumber = this.recipes.length
   login = new Subject<boolean>();
+  userLoggedIn:boolean = false
 
   constructor(
     private loggerService: LoggerService,
@@ -85,7 +90,21 @@ export class RecipesService {
 
   addRecipe(custRecipe: Recipe): void {
     this.recipes.push(custRecipe);
-    this.loggerService.addLog('Customer Recipe Added');
+    this.loggerService.addLog('New Recipe Added');
+    this.route.navigate(['../recipe/recipelist'], { relativeTo: this.router });
+  }
+
+  updateRecipe(changedRecipe: Recipe): void{
+    // this.recipes.splice(changedRecipe.id-1)
+    // this.recipes.push(changedRecipe);
+    for(let item of this.recipes){
+      if(item.id === changedRecipe.id){
+       for(let key in item){
+          item[key] = changedRecipe[key]
+       }
+      }
+    }
+    this.loggerService.addLog('Recipe Updated');
     this.route.navigate(['../recipe/recipelist'], { relativeTo: this.router });
   }
 

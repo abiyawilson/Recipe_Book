@@ -1,38 +1,50 @@
 <div class="container">
-  <form>
+  <form (ngSubmit)="onAddRecipe()" #contribution="ngForm">
+    <div class="mb-3">
+      <button type="button" class="btn btn-info" (click)="loadContents()">Load Recipe</button>
+    </div>
+    <div>
+      <input type="hidden" id="itemNumber" name="itemNumber" ngModel #itemNumber="ngModel">
+    </div>
     <div class="mb-3">
       <label for="name">Recipe Name</label>
-      <input type="text" id="name" class="form-control" #nameInput />
+      <input type="text" id="name" class="form-control"  ngModel name="recipename" #recipename="ngModel" required />
+      <span class="help-block" *ngIf="!recipename.valid && recipename.touched">**This field is required.</span>
+    </div>
+    <div class="mb-3">
+      <label for="name">Author</label>
+      <input type="text" id="name" class="form-control"  ngModel name="author" #author="ngModel" required />
+      <span class="help-block" *ngIf="!author.valid && author.touched">**This Field is required</span>
     </div>
     <div class="mb-3">
       <label for="description">Description</label>
-      <input type="text" id="description" class="form-control" #descInput />
+      <input type="text" id="description" class="form-control" ngModel name="description" #description="ngModel" required />
+      <span class="help-block" *ngIf="!description.valid && description.touched">**This Field is required</span>
     </div>
     <div class="mb-3">
       <label for="image">Image Link</label>
-      <input type="text" id="image" class="form-control" #imageInput />
+      <input type="text" id="image" class="form-control" ngModel name="image" #image="ngModel" required />
+      <span class="help-block" *ngIf="!image.valid && image.touched">**This Field is required</span>
     </div>
     <div class="mb-3">
       <label for="integrident">Integridents</label>
-      <input
-        type="text"
-        id="integrident"
-        class="form-control"
-        #integridentInput
-      />
+      <input type="text" id="integrident" class="form-control" ngModel name="integridents" #integridents="ngModel" required />
+      <span class="help-block" *ngIf="!integridents.valid && integridents.touched">**This Field is required</span>
     </div>
     <div class="mb-3">
       <label for="procedure">Procedure</label>
-      <input type="text" id="procedure" class="form-control" #procedureInput />
+      <input type="text" id="procedure" class="form-control" ngModel name="procedure" #procedure="ngModel" required />
+      <span class="help-block" *ngIf="!procedure.valid && procedure.touched">**This Field is required</span>
     </div>
     <div class="col-xs-12" style="padding-left: 40%">
-      <button class="btn btn-success" type="submit" (click)="onAddItem()">
+      <button *ngIf="!onUpdate" [disabled]="!contribution.valid" class="btn btn-success" type="submit">
         Add
       </button>
+      <button *ngIf="onUpdate" [disabled]="!contribution.valid" class="btn btn-success" type="submit">
+        Update
+      </button>
       <span style="padding-left: 10px"></span>
-      <button class="btn btn-danger" type="button">Delete</button>
-      <span style="padding-left: 10px"></span>
-      <button class="btn btn-primary" type="button">Clear</button>
+      <button class="btn btn-danger" [disabled]="!contribution.valid" type="button" (click)="onReset()">Clear</button>
     </div>
   </form>
 </div>

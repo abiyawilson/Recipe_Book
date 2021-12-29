@@ -20,6 +20,7 @@ const appRoutes: Routes = [
     ],
   },
   { path: 'contributor', component: ContributorContentComponent },
+  { path: 'updateRecipe/:name', component: ContributorContentComponent },
   { path: 'login', component: LoginComponent },
   {
     path: 'not-found',

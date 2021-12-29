@@ -11,6 +11,8 @@ import { Recipe } from '../recipe-list/recipe.model';
 export class RecipeDetailsComponent implements OnChanges, OnInit {
   recipe: Recipe;
   name: string;
+  
+  login: boolean = false;
 
   constructor(
     private recipeService: RecipesService,
@@ -21,7 +23,9 @@ export class RecipeDetailsComponent implements OnChanges, OnInit {
   ngOnInit(): void {
     this.route.params.subscribe((param: Params) => {
       this.recipe = this.recipeService.getRecipe(param.name);
+      this.login =  this.recipeService.userLoggedIn
     });
+
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -30,5 +34,9 @@ export class RecipeDetailsComponent implements OnChanges, OnInit {
 
   goBack() {
     this.router.navigate(['../recipelist'], { relativeTo: this.route });
+  }
+
+  onUpdate() :void {
+    this.router.navigate(['../../updateRecipe/'+this.recipe.name], { relativeTo: this.route });
   }
 }

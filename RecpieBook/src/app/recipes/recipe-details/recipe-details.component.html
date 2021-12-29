@@ -10,9 +10,11 @@
       alt="{{ recipe.name }}"
       class="img-responsive image"
     />
+    <div class="updateButton"><button *ngIf="login" type="button" class="btn btn-success" (click)="onUpdate()">Update</button></div>
   </div>
   <div class="right">
     <h1>{{ recipe.name }}</h1>
+    <p><i>Author: {{recipe.author}}</i></p>
     <p>{{ recipe.description }}</p>
     <h4>Integridents</h4>
     <div *ngFor="let integrident of recipe.ingredients">
