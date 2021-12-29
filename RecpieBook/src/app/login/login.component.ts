@@ -13,6 +13,7 @@ export class LoginComponent implements OnInit {
 
   uname: string;
   password: string;
+  isInvalid:boolean = false
 
   constructor(
     private route: Router,
@@ -28,7 +29,11 @@ export class LoginComponent implements OnInit {
 
     if (this.uname === 'user' && this.password === 'tiger') {
       this.recipeService.login.next(true);
-      this.route.navigate(['../contributor'], { relativeTo: this.router });
+      this.recipeService.userLoggedIn = true
+      this.route.navigate(['../home'], { relativeTo: this.router });
+    }
+    else{
+      this.isInvalid = true
     }
   }
 

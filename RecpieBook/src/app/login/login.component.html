@@ -20,6 +20,7 @@
             />
           </div>
         </div>
+        <span *ngIf="isInvalid"><i>Invalid Username or Password</i></span>
         <div class="row">
           <div class="col-xs-12" style="padding-left: 40px">
             <button class="btn btn-success" type="submit" (click)="login()">

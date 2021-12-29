@@ -15,7 +15,7 @@ import { LoggerService } from './logger.service';
 import { RoutingModule } from './app-routing.module';
 import { LoginComponent } from './login/login.component';
 import { NotFoundComponent } from './not-found/not-found.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -31,7 +31,7 @@ import { FormsModule } from '@angular/forms';
     NotFoundComponent,
   ],
 
-  imports: [BrowserModule, CommonModule, RoutingModule, FormsModule],
+  imports: [BrowserModule, CommonModule, RoutingModule, FormsModule, ReactiveFormsModule] ,
 
   providers: [RecipesService, LoggerService],
   bootstrap: [AppComponent],
