@@ -110,4 +110,9 @@ export class RecipesService {
     let obj = this.recipes.find((o) => o.id === parseInt(id));
     return obj;
   }
+
+  deleteRecipe(recipe:Recipe){
+    console.log(recipe)
+    this.recipes.splice(recipe.id-1)
+  }
 }

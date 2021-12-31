@@ -61,6 +61,7 @@
         id="image"
         class="form-control"
         formControlName="image"
+        #imagePath
       />
       <span
         class="help-block"
@@ -70,6 +71,9 @@
         "
         >**This Field is required</span
       >
+    </div>
+    <div class="mb-3" *ngIf="contributionForm.get('image').valid">
+        <img [src]="imagePath.value" class="img-responsive" height="250px" width="250px">
     </div>
     <div formArrayName="integridents" class="mb-3">
       <h5>Integridents</h5>

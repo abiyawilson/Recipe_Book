@@ -75,6 +75,10 @@ export class UpdateRecipeComponent implements OnInit {
     (<FormArray>this.contributionForm.get('integridents')).push(control);
   }
 
+  onDeleteIngredient(index:number){
+    (<FormArray>this.contributionForm.get('integridents')).removeAt(index);
+  }
+
   getProcedureControls() {
     return (<FormArray>this.contributionForm.get('procedure')).controls;
   }
@@ -82,6 +86,10 @@ export class UpdateRecipeComponent implements OnInit {
   onAddProcedure() {
     const control = new FormControl(null, Validators.required);
     (<FormArray>this.contributionForm.get('procedure')).push(control);
+  }
+
+  onDeleteProcedure(index:number) {
+    (<FormArray>this.contributionForm.get('procedure')).removeAt(index);
   }
 
   onUpdateRecipe() {
@@ -98,5 +106,7 @@ export class UpdateRecipeComponent implements OnInit {
     this.recipeService.updateRecipe(newRecipe);
     
   }
+
+  
 }
 

@@ -38,4 +38,9 @@ export class RecipeDetailsComponent implements OnChanges, OnInit {
   onUpdate() :void {
     this.router.navigate(['../../updateRecipe/'+this.recipe.id], { relativeTo: this.route });
   }
+
+  onDelete():void {
+    this.recipeService.deleteRecipe(this.recipe)
+    this.router.navigate(['../recipelist'], { relativeTo: this.route });
+  }
 }
