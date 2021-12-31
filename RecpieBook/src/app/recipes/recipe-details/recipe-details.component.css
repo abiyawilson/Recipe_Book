@@ -30,7 +30,7 @@ button {
   margin-top: 10px;
 }
 
-.updateButton {
+.updateButton, .deleteButton {
   margin-top: 20px;
   margin-left:20px;
 }
