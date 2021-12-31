@@ -17,6 +17,7 @@ import { LoginComponent } from './login/login.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UpdateRecipeComponent } from './recipes/update-recipe/update-recipe.component';
+import { FilterPipe } from './filter.pipe';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { UpdateRecipeComponent } from './recipes/update-recipe/update-recipe.com
     LoginComponent,
     NotFoundComponent,
     UpdateRecipeComponent,
+    FilterPipe,
   ],
 
   imports: [BrowserModule, CommonModule, RoutingModule, FormsModule, ReactiveFormsModule] ,

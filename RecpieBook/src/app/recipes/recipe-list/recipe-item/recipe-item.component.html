@@ -1,7 +1,10 @@
+<div class="filterbox">
+  <input class="form-control" id="myInput" type="text"  [(ngModel)]="filteredRecipe" placeholder="Search Recipe Name">
+</div>
 <div class="container">
   <div
     class="card recipe-card"
-    *ngFor="let recipe of recipe"
+    *ngFor="let recipe of recipe | filter:filteredRecipe:'name'"
   >
     <img
       [src]="recipe.image"
