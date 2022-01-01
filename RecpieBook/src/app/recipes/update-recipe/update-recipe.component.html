@@ -1,8 +1,8 @@
-<div class="container">
+<div class="container" *ngIf="updateForm">
   <div>
-    <h3>Add your Recipe</h3>
+    <h3>Update your Recipe</h3>
   </div>
-  <form (ngSubmit)="onUpdateRecipe()" [formGroup]="contributionForm">
+  <form (ngSubmit)="onUpdateRecipe()" [formGroup]="updateForm">
     <div class="mb-3">
       <label for="name">Recipe Name</label>
       <input
@@ -14,25 +14,24 @@
       <span
         class="help-block"
         *ngIf="
-          !contributionForm.get('recipename').valid &&
-          contributionForm.get('recipename').touched
+          !updateForm.get('recipename').valid &&
+          updateForm.get('recipename').touched
         "
         >**This field is required.</span
       >
     </div>
     <div class="mb-3">
-      <label for="name">Author</label>
+      <label for="author">Author</label>
       <input
         type="text"
-        id="name"
+        id="author"
         class="form-control"
         formControlName="author"
       />
       <span
         class="help-block"
         *ngIf="
-          !contributionForm.get('author').valid &&
-          contributionForm.get('author').touched
+          !updateForm.get('author').valid && updateForm.get('author').touched
         "
         >**This Field is required</span
       >
@@ -48,8 +47,8 @@
       <span
         class="help-block"
         *ngIf="
-          !contributionForm.get('description').valid &&
-          contributionForm.get('description').touched
+          !updateForm.get('description').valid &&
+          updateForm.get('description').touched
         "
         >**This Field is required</span
       >
@@ -66,14 +65,18 @@
       <span
         class="help-block"
         *ngIf="
-          !contributionForm.get('image').valid &&
-          contributionForm.get('image').touched
+          !updateForm.get('image').valid && updateForm.get('image').touched
         "
         >**This Field is required</span
       >
     </div>
     <div class="mb-3">
-      <img [src]="imagePath.value" class="img-responsive" height="250px" width="250px">
+      <img
+        [src]="imagePath.value"
+        class="img-responsive"
+        height="250px"
+        width="250px"
+      />
     </div>
     <div formArrayName="integridents" class="mb-3">
       <h5>Integridents</h5>
@@ -87,9 +90,12 @@
       >
         <input type="text" class="form-control" [formControlName]="i" />
         <button
-            type="button"
-            class="btn btn-danger"
-            (click)="onDeleteIngredient(i)">x</button>
+          type="button"
+          class="btn btn-danger"
+          (click)="onDeleteIngredient(i)"
+        >
+          x
+        </button>
       </div>
       <button class="btn btn-info" type="button" (click)="onAddIntgerident()">
         +
@@ -106,7 +112,10 @@
           <button
             type="button"
             class="btn btn-danger"
-            (click)="onDeleteProcedure(i)">x</button>
+            (click)="onDeleteProcedure(i)"
+          >
+            x
+          </button>
         </span>
       </div>
       <button class="btn btn-info" type="button" (click)="onAddProcedure()">
@@ -115,7 +124,7 @@
     </div>
     <div class="col-xs-12" style="padding-left: 40%">
       <button
-        [disabled]="!contributionForm.valid"
+        [disabled]="!updateForm.valid"
         class="btn btn-success"
         type="submit"
       >
@@ -124,11 +133,11 @@
       <span style="padding-left: 10px"></span>
       <button
         class="btn btn-danger"
-        [disabled]="!contributionForm.valid"
+        [disabled]="!updateForm.valid"
         type="button"
         (click)="onReset()"
       >
-       Cancel
+        Cancel
       </button>
     </div>
   </form>

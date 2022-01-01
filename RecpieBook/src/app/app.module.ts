@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { RecipesComponent } from './recipes/recipes.component';
 import { RecipeDetailsComponent } from './recipes/recipe-details/recipe-details.component';
@@ -35,7 +35,14 @@ import { FilterPipe } from './filter.pipe';
     FilterPipe,
   ],
 
-  imports: [BrowserModule, CommonModule, RoutingModule, FormsModule, ReactiveFormsModule] ,
+  imports: [
+    BrowserModule,
+    CommonModule,
+    RoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+  ],
 
   providers: [RecipesService, LoggerService],
   bootstrap: [AppComponent],

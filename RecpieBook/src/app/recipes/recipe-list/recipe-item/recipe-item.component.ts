@@ -9,8 +9,10 @@ import { RecipesService } from 'src/app/recipes.service';
 })
 export class RecipeItemComponent implements OnInit {
   recipe: { name: string; description: string; image: string }[] = [];
-  login:boolean = false
-  filteredRecipe:string = ""
+  login: boolean = false;
+  filteredRecipe: string = '';
+  isFetching: boolean = true;
+  error: string = '';
 
   constructor(
     private recipeService: RecipesService,
@@ -19,7 +21,27 @@ export class RecipeItemComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.recipe = this.recipeService.recipes;
+    this.getRecipesList();
+
+    this.recipeService.recipeRefresh.subscribe((status: Boolean) => {
+      if (status) {
+        this.getRecipesList();
+      }
+    });
+  }
+
+  getRecipesList() {
+    this.recipeService.getRecipeList().subscribe(
+      (recipe) => {
+        this.isFetching = false;
+        this.recipe = recipe;
+      },
+      (error) => {
+        this.isFetching = false;
+        this.error = error.message;
+        console.log(error);
+      }
+    );
   }
 
   getRecipe(id: string) {

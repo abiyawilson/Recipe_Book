@@ -1,35 +1,36 @@
 .container {
-    margin-top: 2%;
-    padding-left: 20px;
-    padding-right: 20px;
-    padding-top: 20px;
-    padding-bottom: 20px;
-    margin-bottom: 20px;
-    width: 100%;
-    height: 100%;
-    background: rgb(226, 231, 226);
-    opacity: 0.9;
-    color: black;
-  }
-  
-  input.ng-invalid.ng-touched {
-    border: 1px solid red;
-  }
-  
-  span{
-    color: red;
-    font-style: italic;
-    font-family: 'Times New Roman', Times, serif;
-  }
-  
-  h3{
-    text-align: center;
-    color: rgb(29, 29, 29);
-    font-family: 'Times New Roman', Times, serif;
-  }
-  
-  h5, label{
-    color: rgb(29, 29, 29);
-    font-family: 'Times New Roman', Times, serif;
-    font-size: 20px;
-  }
+  margin-top: 2%;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+  width: 100%;
+  height: 100%;
+  background: rgb(226, 231, 226);
+  opacity: 0.9;
+  color: black;
+}
+
+input.ng-invalid.ng-touched {
+  border: 1px solid red;
+}
+
+span {
+  color: red;
+  font-style: italic;
+  font-family: "Times New Roman", Times, serif;
+}
+
+h3 {
+  text-align: center;
+  color: rgb(29, 29, 29);
+  font-family: "Times New Roman", Times, serif;
+}
+
+h5,
+label {
+  color: rgb(29, 29, 29);
+  font-family: "Times New Roman", Times, serif;
+  font-size: 20px;
+}

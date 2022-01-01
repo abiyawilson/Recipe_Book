@@ -16,20 +16,21 @@ input.ng-invalid.ng-touched {
   border: 1px solid red;
 }
 
-span{
+span {
   color: red;
   font-style: italic;
-  font-family: 'Times New Roman', Times, serif;
+  font-family: "Times New Roman", Times, serif;
 }
 
-h3{
+h3 {
   text-align: center;
   color: rgb(29, 29, 29);
-  font-family: 'Times New Roman', Times, serif;
+  font-family: "Times New Roman", Times, serif;
 }
 
-h5, label{
+h5,
+label {
   color: rgb(29, 29, 29);
-  font-family: 'Times New Roman', Times, serif;
+  font-family: "Times New Roman", Times, serif;
   font-size: 20px;
 }

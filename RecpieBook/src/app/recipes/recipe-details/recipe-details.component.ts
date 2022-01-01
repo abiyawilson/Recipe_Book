@@ -10,8 +10,10 @@ import { Recipe } from '../recipe-list/recipe.model';
 })
 export class RecipeDetailsComponent implements OnChanges, OnInit {
   recipe: Recipe;
-  
+  isFetching: boolean = true;
   login: boolean = false;
+  error: string = '';
+  id: string = '';
 
   constructor(
     private recipeService: RecipesService,
@@ -21,10 +23,20 @@ export class RecipeDetailsComponent implements OnChanges, OnInit {
 
   ngOnInit(): void {
     this.route.params.subscribe((param: Params) => {
-      this.recipe = this.recipeService.getRecipe(param.id);
-      this.login =  this.recipeService.userLoggedIn
+      this.recipeService.getRecipe(param.id).subscribe(
+        (recipe: Recipe) => {
+          this.id = param.id;
+          this.isFetching = false;
+          this.recipe = recipe;
+        },
+        (error) => {
+          this.isFetching = false;
+          this.error = error.message;
+          console.log(error);
+        }
+      );
+      this.login = this.recipeService.userLoggedIn;
     });
-
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -35,12 +47,15 @@ export class RecipeDetailsComponent implements OnChanges, OnInit {
     this.router.navigate(['../recipelist'], { relativeTo: this.route });
   }
 
-  onUpdate() :void {
-    this.router.navigate(['../../updateRecipe/'+this.recipe.id], { relativeTo: this.route });
+  onUpdate(): void {
+    this.router.navigate(['../../updateRecipe/' + this.id], {
+      relativeTo: this.route,
+    });
   }
 
-  onDelete():void {
-    this.recipeService.deleteRecipe(this.recipe)
-    this.router.navigate(['../recipelist'], { relativeTo: this.route });
+  onDelete(): void {
+    this.recipeService.deleteRecipe(this.id).subscribe((event) => {
+      this.router.navigate(['../recipelist'], { relativeTo: this.route });
+    });
   }
 }

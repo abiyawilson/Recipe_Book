@@ -1,5 +1,4 @@
 export class Recipe {
-  public id;
   public name;
   public author;
   public description;
@@ -8,7 +7,6 @@ export class Recipe {
   public procedure;
 
   constructor(
-    id : number,
     name: string,
     author: string,
     description: string,
@@ -16,7 +14,6 @@ export class Recipe {
     ingredients: string[],
     procedure: string[]
   ) {
-    this.id = id
     this.name = name;
     this.author = author;
     this.description = description;
