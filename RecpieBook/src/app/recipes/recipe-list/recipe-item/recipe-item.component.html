@@ -1,11 +1,9 @@
-<div class="filterbox">
-  <input class="form-control" id="myInput" type="text"  [(ngModel)]="filteredRecipe" placeholder="Search Recipe Name">
-</div>
 <div class="container">
-  <div
-    class="card recipe-card"
-    *ngFor="let recipe of recipe | filter:filteredRecipe:'name'"
-  >
+  <!-- <div *ngIf="isFetching" class="d-flex align-items-center">
+    <strong>Loading...</strong>
+    <div class="spinner-border ms-auto" role="status" aria-hidden="true"></div>
+  </div> -->
+  <div class="card recipe-card" *ngFor="let recipe of recipe">
     <img
       [src]="recipe.image"
       class="card-img-top"
@@ -18,9 +16,10 @@
         <h5 class="card-title">{{ recipe.name }}</h5>
         <p class="card-text">{{ recipe.description }}</p>
       </div>
-      <div >
+      <div>
         <a (click)="getRecipe(recipe.id)" class="btn btn-primary"
-        >View Details</a >
+          >View Details</a
+        >
       </div>
     </div>
   </div>

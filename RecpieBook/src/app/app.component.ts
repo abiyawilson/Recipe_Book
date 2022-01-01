@@ -9,19 +9,11 @@ import { Recipe } from './recipes/recipe-list/recipe.model';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent implements OnInit {
-  loadedFeature = 'home';
-  custRecipe: Recipe;
   constructor(private recipeService: RecipesService) {}
 
   ngOnInit(): void {}
 
-  navValue(feature: string): void {
-    this.loadedFeature = feature;
-  }
-
-  onCustAdded(content: string): void {
-    if (content) {
-      this.loadedFeature = 'recipe';
-    }
-  }
+  // save() {
+  //   this.recipeService.saveRecipe()
+  // }
 }

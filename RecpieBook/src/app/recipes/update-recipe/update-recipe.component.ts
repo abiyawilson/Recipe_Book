@@ -7,106 +7,128 @@ import { Recipe } from '../recipe-list/recipe.model';
 @Component({
   selector: 'app-update-recipe',
   templateUrl: './update-recipe.component.html',
-  styleUrls: ['./update-recipe.component.css']
+  styleUrls: ['./update-recipe.component.css'],
 })
 export class UpdateRecipeComponent implements OnInit {
-
-  login:boolean = false
+  login: boolean = false;
   recipe: Recipe;
-  contributionForm : FormGroup;
-  recipeIntgridents = new FormArray([])
-  recipeprocedure = new FormArray([])
-  
-  itemNumber: number
-  recipename:string
-  author:string
-  description:string
-  image:string
-  integridents:[]
-  procedure:[]
+  updateForm: FormGroup;
+  recipeIntgridents = new FormArray([]);
+  recipeprocedure = new FormArray([]);
 
-  constructor(private recipeService: RecipesService, private route: ActivatedRoute , private router:Router) { }
+  itemNumber: number;
+  recipename: string;
+  author: string;
+  description: string;
+  image: string;
+  integridents: [];
+  procedure: [];
+  isFetching: boolean = true;
+  id: string;
+  error: string;
+
+  constructor(
+    private recipeService: RecipesService,
+    private route: ActivatedRoute,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
-    this.login =  this.recipeService.userLoggedIn
-    if(!this.login){
+    this.login = this.recipeService.userLoggedIn;
+    if (!this.login) {
       this.router.navigate(['/login']);
     }
 
     this.route.params.subscribe((param: Params) => {
-      this.recipe = this.recipeService.getRecipe(param.id);
-      if (this.recipe) {
-        this.loadContents()
-      }
+      this.recipeService.getRecipe(param.id).subscribe(
+        (recipe: Recipe) => {
+          this.id = param.id;
+          this.isFetching = false;
+          this.recipe = recipe;
+          this.loadContents();
+        },
+        (error) => {
+          this.isFetching = false;
+          this.error = error.message;
+          console.log(error);
+        }
+      );
     });
   }
 
-  onReset(){
-    this.router.navigate(['../../recipe/' + this.recipe.id], { relativeTo: this.route });
+  onReset() {
+    this.router.navigate(['../../recipe/' + this.id], {
+      relativeTo: this.route,
+    });
   }
 
   loadContents(): void {
-    for (let intgrident of this.recipe.ingredients){
-      this.recipeIntgridents.push(new FormControl(intgrident))
+    if (this.recipeIntgridents.length != 0) {
+      for (let intgrident of this.recipe.ingredients) {
+        this.recipeIntgridents.push(new FormControl(intgrident));
+      }
     }
 
-    for ( let procedure of this.recipe.procedure) {
-      this.recipeprocedure.push(new FormControl(procedure))
+    if (this.recipeprocedure.length != 0) {
+      for (let procedure of this.recipe.procedure) {
+        this.recipeprocedure.push(new FormControl(procedure));
+      }
     }
-    
-    this.contributionForm = new FormGroup ({
-      'recipename': new FormControl(this.recipe.name, [Validators.required]),
-      'author': new FormControl(this.recipe.author, [Validators.required]),
-      'description': new FormControl(this.recipe.description, [Validators.required]),
-      'image': new FormControl(this.recipe.image, [Validators.required]),
-      'integridents': this.recipeIntgridents,
-      'procedure':  this.recipeprocedure
 
-    })
-    
+    this.updateForm = new FormGroup({
+      recipename: new FormControl(this.recipe.name, [Validators.required]),
+      author: new FormControl(this.recipe.author, [Validators.required]),
+      description: new FormControl(this.recipe.description, [
+        Validators.required,
+      ]),
+      image: new FormControl(this.recipe.image, [Validators.required]),
+      integridents: this.recipeIntgridents,
+      procedure: this.recipeprocedure,
+    });
   }
 
   getIntgeridentsControls() {
-    return (<FormArray>this.contributionForm.get('integridents')).controls;
+    return (<FormArray>this.updateForm.get('integridents')).controls;
   }
 
   onAddIntgerident() {
     const control = new FormControl(null, Validators.required);
-    (<FormArray>this.contributionForm.get('integridents')).push(control);
+    (<FormArray>this.updateForm.get('integridents')).push(control);
   }
 
-  onDeleteIngredient(index:number){
-    (<FormArray>this.contributionForm.get('integridents')).removeAt(index);
+  onDeleteIngredient(index: number) {
+    (<FormArray>this.updateForm.get('integridents')).removeAt(index);
   }
 
   getProcedureControls() {
-    return (<FormArray>this.contributionForm.get('procedure')).controls;
+    return (<FormArray>this.updateForm.get('procedure')).controls;
   }
 
   onAddProcedure() {
     const control = new FormControl(null, Validators.required);
-    (<FormArray>this.contributionForm.get('procedure')).push(control);
+    (<FormArray>this.updateForm.get('procedure')).push(control);
   }
 
-  onDeleteProcedure(index:number) {
-    (<FormArray>this.contributionForm.get('procedure')).removeAt(index);
+  onDeleteProcedure(index: number) {
+    (<FormArray>this.updateForm.get('procedure')).removeAt(index);
   }
 
   onUpdateRecipe() {
-    this.itemNumber = this.recipe.id
-    this.recipename = this.contributionForm.value.recipename
-    this.author = this.contributionForm.value.author
-    this.description = this.contributionForm.value.description
-    this.image = this.contributionForm.value.image
-    this.integridents = this.contributionForm.value.integridents
-    this.procedure = this.contributionForm.value.procedure
-    const newRecipe = new Recipe(this.itemNumber, this.recipename, this.author, this.description, this.image, 
-      this.integridents, this.procedure);
-    
-    this.recipeService.updateRecipe(newRecipe);
-    
+    this.recipename = this.updateForm.value.recipename;
+    this.author = this.updateForm.value.author;
+    this.description = this.updateForm.value.description;
+    this.image = this.updateForm.value.image;
+    this.integridents = this.updateForm.value.integridents;
+    this.procedure = this.updateForm.value.procedure;
+    const newRecipe = new Recipe(
+      this.recipename,
+      this.author,
+      this.description,
+      this.image,
+      this.integridents,
+      this.procedure
+    );
+
+    this.recipeService.updateRecipe(newRecipe, this.id);
   }
-
-  
 }
-

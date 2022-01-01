@@ -1,32 +1,54 @@
 <div class="container">
-  <div>
-    <button type="button" class="btn btn-secondary" (click)="goBack()">
-      Back
-    </button>
-  </div>
-  <div class="left">
-    <img
-      [src]="recipe.image"
-      alt="{{ recipe.name }}"
-      class="img-responsive image"
-    />
-    <div class="updateButton">
-      <button *ngIf="login" type="button" class="btn btn-success" (click)="onUpdate()">Update</button>
-      <span style="padding-left: 10px"></span>
-      <button *ngIf="login" type="button" class="btn btn-danger" (click)="onDelete()">Delete</button>
+  <!-- <div *ngIf="isFetching" class="d-flex align-items-center">
+    <strong>Loading...</strong>
+    <div class="spinner-border ms-auto" role="status" aria-hidden="true"></div>
+  </div> -->
+  <div *ngIf="!isFetching">
+    <div>
+      <button type="button" class="btn btn-secondary" (click)="goBack()">
+        Back
+      </button>
     </div>
-  </div>
-  <div class="right">
-    <h1>{{ recipe.name }}</h1>
-    <p><i>Author: {{recipe.author}}</i></p>
-    <p>{{ recipe.description }}</p>
-    <h4>Integridents</h4>
-    <div *ngFor="let integrident of recipe.ingredients">
-      <p>{{ integrident }}</p>
+    <div class="left">
+      <img
+        [src]="recipe.image"
+        alt="{{ recipe.name }}"
+        class="img-responsive image"
+      />
+      <div class="updateButton">
+        <button
+          *ngIf="login"
+          type="button"
+          class="btn btn-success"
+          (click)="onUpdate()"
+        >
+          Update
+        </button>
+        <span style="padding-left: 10px"></span>
+        <button
+          *ngIf="login"
+          type="button"
+          class="btn btn-danger"
+          (click)="onDelete()"
+        >
+          Delete
+        </button>
+      </div>
     </div>
-    <h4>Procedure</h4>
-    <div *ngFor="let step of recipe.procedure">
-      <p>{{ step }}</p>
+    <div class="right">
+      <h1>{{ recipe.name }}</h1>
+      <p>
+        <i>Author: {{ recipe.author }}</i>
+      </p>
+      <p>{{ recipe.description }}</p>
+      <h4>Integridents</h4>
+      <div *ngFor="let integrident of recipe.ingredients">
+        <p>{{ integrident }}</p>
+      </div>
+      <h4>Procedure</h4>
+      <div *ngFor="let step of recipe.procedure">
+        <p>{{ step }}</p>
+      </div>
     </div>
   </div>
 </div>
