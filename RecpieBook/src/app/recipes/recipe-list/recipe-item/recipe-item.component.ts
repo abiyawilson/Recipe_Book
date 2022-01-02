@@ -23,12 +23,6 @@ export class RecipeItemComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.getRecipesList();
-
-    // this.onRefresh = this.recipeService.recipeRefresh.subscribe((status: Boolean) => {
-    //   if (status) {
-    //     this.getRecipesList();
-    //   }
-    // });
   }
 
   getRecipesList() {
