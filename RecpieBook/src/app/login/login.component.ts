@@ -3,7 +3,6 @@ import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { AuthenicationService, AuthResponseData } from '../auth/authenication.service';
-import { RecipesService } from '../recipes.service';
 
 @Component({
   selector: 'app-login',
@@ -46,7 +45,6 @@ export class LoginComponent implements OnInit {
 
     authObs.subscribe(
       resData => {
-        console.log(resData);
         this.isLoading = false;
         this.route.navigate(['../home'], { relativeTo: this.router });
       },

@@ -1,15 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { RecipesService } from 'src/app/recipes.service';
+import { Subscription } from 'rxjs';
 import { Recipe } from '../recipe-list/recipe.model';
+import { RecipesService } from '../recipes.service';
 
 @Component({
   selector: 'app-update-recipe',
   templateUrl: './update-recipe.component.html',
   styleUrls: ['./update-recipe.component.css'],
 })
-export class UpdateRecipeComponent implements OnInit {
+export class UpdateRecipeComponent implements OnInit, OnDestroy {
   login: boolean = false;
   recipe: Recipe;
   updateForm: FormGroup;
@@ -19,6 +20,8 @@ export class UpdateRecipeComponent implements OnInit {
   itemNumber: number;
   recipename: string;
   author: string;
+  email: string;
+  userEmail:string;
   description: string;
   image: string;
   integridents: [];
@@ -26,7 +29,8 @@ export class UpdateRecipeComponent implements OnInit {
   isFetching: boolean = true;
   id: string;
   error: string;
-
+  private userSub: Subscription
+  
   constructor(
     private recipeService: RecipesService,
     private route: ActivatedRoute,
@@ -34,11 +38,8 @@ export class UpdateRecipeComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    if (!this.login) {
-      this.router.navigate(['/login']);
-    }
 
-    this.route.params.subscribe((param: Params) => {
+    this.userSub = this.route.params.subscribe((param: Params) => {
       this.recipeService.getRecipe(param.id).subscribe(
         (recipe: Recipe) => {
           this.id = param.id;
@@ -62,13 +63,13 @@ export class UpdateRecipeComponent implements OnInit {
   }
 
   loadContents(): void {
-    if (this.recipeIntgridents.length != 0) {
+    if (this.recipe.ingredients.length != 0) {
       for (let intgrident of this.recipe.ingredients) {
         this.recipeIntgridents.push(new FormControl(intgrident));
       }
     }
 
-    if (this.recipeprocedure.length != 0) {
+    if (this.recipe.procedure.length != 0) {
       for (let procedure of this.recipe.procedure) {
         this.recipeprocedure.push(new FormControl(procedure));
       }
@@ -115,6 +116,7 @@ export class UpdateRecipeComponent implements OnInit {
   onUpdateRecipe() {
     this.recipename = this.updateForm.value.recipename;
     this.author = this.updateForm.value.author;
+    this.email = this.recipe.email;
     this.description = this.updateForm.value.description;
     this.image = this.updateForm.value.image;
     this.integridents = this.updateForm.value.integridents;
@@ -122,6 +124,7 @@ export class UpdateRecipeComponent implements OnInit {
     const newRecipe = new Recipe(
       this.recipename,
       this.author,
+      this.email,
       this.description,
       this.image,
       this.integridents,
@@ -129,5 +132,9 @@ export class UpdateRecipeComponent implements OnInit {
     );
 
     this.recipeService.updateRecipe(newRecipe, this.id);
+  }
+  
+  ngOnDestroy() {
+    this.userSub.unsubscribe();
   }
 }

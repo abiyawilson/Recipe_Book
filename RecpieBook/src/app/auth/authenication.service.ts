@@ -103,7 +103,6 @@ export class AuthenicationService {
     this.user.next(null);
     this.router.navigate(['/login']);
     localStorage.removeItem('userData');
-    console.log("local storage " + JSON.parse(localStorage.getItem('userData')))
     if (this.tokenExpirationTimer) {
       clearTimeout(this.tokenExpirationTimer);
     }
@@ -131,7 +130,6 @@ export class AuthenicationService {
 
   private handleError(errorRes: HttpErrorResponse) {
     let errorMessage = 'An unknown error occurred!';
-    console.log(errorRes.error.error.message)
     if (!errorRes.error || !errorRes.error.error) {
       return throwError(errorMessage);
     }

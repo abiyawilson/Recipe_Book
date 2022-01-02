@@ -10,7 +10,6 @@ import { HeadersComponent } from './shared/headers/headers.component';
 import { CommonModule } from '@angular/common';
 import { ContributorContentComponent } from './contributions/contributor-content/contributor-content.component';
 import { HomeComponent } from './shared/home/home.component';
-import { RecipesService } from './recipes.service';
 import { LoggerService } from './logger.service';
 import { RoutingModule } from './app-routing.module';
 import { LoginComponent } from './login/login.component';
@@ -20,6 +19,7 @@ import { UpdateRecipeComponent } from './recipes/update-recipe/update-recipe.com
 import { FilterPipe } from './filter.pipe';
 import { SpinnerComponent } from './shared/spinner/spinner.component';
 import { AuthInterceptorService } from './auth/auth-interceptor.service';
+import { RecipesService } from './recipes/recipes.service';
 
 @NgModule({
   declarations: [
