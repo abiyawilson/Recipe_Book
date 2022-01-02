@@ -34,7 +34,6 @@ export class UpdateRecipeComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.login = this.recipeService.userLoggedIn;
     if (!this.login) {
       this.router.navigate(['/login']);
     }

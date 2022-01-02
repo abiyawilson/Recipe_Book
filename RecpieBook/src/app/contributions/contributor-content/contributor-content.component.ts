@@ -17,7 +17,6 @@ export class ContributorContentComponent implements OnInit {
   image: string;
   integridents: [];
   procedure: [];
-  login: boolean = false;
 
   contributionForm: FormGroup;
 
@@ -28,11 +27,7 @@ export class ContributorContentComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.login = this.recipeService.userLoggedIn;
-    if (!this.login) {
-      this.router.navigate(['/login']);
-    }
-
+    
     this.contributionForm = new FormGroup({
       recipename: new FormControl(null, [Validators.required]),
       author: new FormControl(null, [Validators.required]),

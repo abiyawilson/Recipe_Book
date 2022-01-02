@@ -11,7 +11,6 @@ import { Recipe } from '../recipe-list/recipe.model';
 export class RecipeDetailsComponent implements OnChanges, OnInit {
   recipe: Recipe;
   isFetching: boolean = true;
-  login: boolean = false;
   error: string = '';
   id: string = '';
 
@@ -35,7 +34,6 @@ export class RecipeDetailsComponent implements OnChanges, OnInit {
           console.log(error);
         }
       );
-      this.login = this.recipeService.userLoggedIn;
     });
   }
 

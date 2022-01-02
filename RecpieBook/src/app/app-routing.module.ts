@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from './auth/auth.guard';
 import { ContributorContentComponent } from './contributions/contributor-content/contributor-content.component';
 import { LoginComponent } from './login/login.component';
 import { NotFoundComponent } from './not-found/not-found.component';
@@ -20,8 +21,8 @@ const appRoutes: Routes = [
       { path: ':id', component: RecipeDetailsComponent },
     ],
   },
-  { path: 'contributor', component: ContributorContentComponent },
-  { path: 'updateRecipe/:id', component: UpdateRecipeComponent },
+  { path: 'contributor', canActivate: [AuthGuard], component: ContributorContentComponent },
+  { path: 'updateRecipe/:id', canActivate: [AuthGuard], component: UpdateRecipeComponent },
   { path: 'login', component: LoginComponent },
   {
     path: 'not-found',
