@@ -1,15 +1,15 @@
 import { HttpClient, HttpEventType, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Subject, throwError } from 'rxjs';
-import { catchError, map, tap } from 'rxjs/operators';
-import { LoggerService } from './logger.service';
-import { Recipe } from './recipes/recipe-list/recipe.model';
+import { Subject} from 'rxjs';
+import { map, tap } from 'rxjs/operators';
+import { LoggerService } from '../logger.service';
+import { Recipe } from './recipe-list/recipe.model';
+
 
 @Injectable()
 export class RecipesService {
   error = new Subject<boolean>();
-  recipeRefresh = new Subject<boolean>();
 
   constructor(
     private loggerService: LoggerService,
@@ -30,7 +30,6 @@ export class RecipesService {
       .subscribe(
         (responseData) => {
           this.loggerService.addLog('Recpie Added ' + responseData);
-          this.recipeRefresh.next(true);
         },
         (error) => {
           this.error.next(error.message);
@@ -80,7 +79,6 @@ export class RecipesService {
       .subscribe(
         (responseData) => {
           this.loggerService.addLog('Recpie Updated ' + responseData);
-          this.recipeRefresh.next(true);
         },
         (error) => {
           this.error.next(error.message);
@@ -127,7 +125,6 @@ export class RecipesService {
         tap((event) => {
           if (event.type === HttpEventType.Response) {
             this.loggerService.addLog('Recpie Deleted ' + event);
-            this.recipeRefresh.next(true);
           }
         })
       );

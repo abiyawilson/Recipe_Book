@@ -13,7 +13,7 @@
       />
       <div class="updateButton">
         <button
-          *ngIf="login"
+          *ngIf=" owner"
           type="button"
           class="btn btn-success"
           (click)="onUpdate()"
@@ -22,7 +22,7 @@
         </button>
         <span style="padding-left: 10px"></span>
         <button
-          *ngIf="login"
+          *ngIf=" owner"
           type="button"
           class="btn btn-danger"
           (click)="onDelete()"
