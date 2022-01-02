@@ -1,28 +1,32 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
-import { RecipesService } from 'src/app/recipes.service';
+import { Subscription } from 'rxjs';
+import { AuthenicationService } from 'src/app/auth/authenication.service';
 
 @Component({
   selector: 'app-headers',
   templateUrl: './headers.component.html',
   styleUrls: ['./headers.component.css'],
 })
-export class HeadersComponent implements OnInit {
+export class HeadersComponent implements OnInit , OnDestroy{
   constructor(
-    private recipeService: RecipesService,
-    private route: ActivatedRoute
+    private authService: AuthenicationService,
   ) {}
 
-  login: boolean = false;
+  isAuthenticated = false;
+  private userSub: Subscription;
 
   ngOnInit(): void {
-    this.recipeService.login.subscribe(
-      (loggedIn: boolean) => (this.login = loggedIn)
-    );
+    this.userSub = this.authService.user.subscribe(user => {
+      this.isAuthenticated = !!user;
+    });
   }
 
-  onReset(): void {
-    this.login = false;
-    this.recipeService.userLoggedIn = false
+  onLogOut(): void {
+    this.authService.logout();
+  }
+
+  ngOnDestroy() {
+    this.userSub.unsubscribe();
   }
 }

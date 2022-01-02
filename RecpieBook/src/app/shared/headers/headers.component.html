@@ -27,25 +27,25 @@
           >Recipes</a
         >
         <a
-          *ngIf="!login"
+          *ngIf="!isAuthenticated"
           class="nav-link text-light"
           routerLink="/login"
           routerLinkActive="active"
           >Sign In</a
         >
         <a
-          *ngIf="login"
+          *ngIf="isAuthenticated"
           class="nav-link text-light"
           routerLink="/contributor"
           routerLinkActive="active"
           >Contribute</a
         >
         <a
-          *ngIf="login"
+          *ngIf="isAuthenticated"
           class="nav-link text-light"
-          routerLink="/home"
           routerLinkActive="active"
-          (click)="onReset()"
+          style="cursor: pointer"
+          (click)="onLogOut()"
           >Sign Out</a
         >
       </div>

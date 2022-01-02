@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { RecipesComponent } from './recipes/recipes.component';
 import { RecipeDetailsComponent } from './recipes/recipe-details/recipe-details.component';
@@ -18,6 +18,8 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UpdateRecipeComponent } from './recipes/update-recipe/update-recipe.component';
 import { FilterPipe } from './filter.pipe';
+import { SpinnerComponent } from './shared/spinner/spinner.component';
+import { AuthInterceptorService } from './auth/auth-interceptor.service';
 
 @NgModule({
   declarations: [
@@ -33,6 +35,7 @@ import { FilterPipe } from './filter.pipe';
     NotFoundComponent,
     UpdateRecipeComponent,
     FilterPipe,
+    SpinnerComponent,
   ],
 
   imports: [
@@ -44,7 +47,12 @@ import { FilterPipe } from './filter.pipe';
     HttpClientModule,
   ],
 
-  providers: [RecipesService, LoggerService],
+  providers: [RecipesService, LoggerService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptorService,
+      multi: true
+    }],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

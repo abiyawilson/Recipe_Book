@@ -9,7 +9,6 @@ import { RecipesService } from 'src/app/recipes.service';
 })
 export class RecipeItemComponent implements OnInit {
   recipe: { name: string; description: string; image: string }[] = [];
-  login: boolean = false;
   filteredRecipe: string = '';
   isFetching: boolean = true;
   error: string = '';

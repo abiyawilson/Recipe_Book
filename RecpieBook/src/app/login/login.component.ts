@@ -1,5 +1,8 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Observable } from 'rxjs';
+import { AuthenicationService, AuthResponseData } from '../auth/authenication.service';
 import { RecipesService } from '../recipes.service';
 
 @Component({
@@ -8,33 +11,57 @@ import { RecipesService } from '../recipes.service';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
-  @ViewChild('username', { static: false }) usernameInputRef: ElementRef;
-  @ViewChild('password', { static: false }) passwordInputRef: ElementRef;
 
-  uname: string;
-  password: string;
-  isInvalid:boolean = false
+  newUser: boolean = false
+  isLoading = false;
+  error: string = null;
 
   constructor(
     private route: Router,
     private router: ActivatedRoute,
-    private recipeService: RecipesService
+    private authService : AuthenicationService
   ) {}
 
   ngOnInit(): void {}
 
-  login(): void {
-    this.uname = this.usernameInputRef.nativeElement.value;
-    this.password = this.passwordInputRef.nativeElement.value;
+  onSubmit(form: NgForm) {
+    if (!form.valid) {
+      return;
+    }
+    const email = form.value.email;
+    const password = form.value.password;
 
-    if (this.uname === 'user' && this.password === 'tiger') {
-      this.recipeService.login.next(true);
-      this.recipeService.userLoggedIn = true
-      this.route.navigate(['../home'], { relativeTo: this.router });
+    let authObs: Observable<AuthResponseData>;
+
+    this.isLoading = true;
+
+    if (!this.newUser) {
+      authObs = this.authService.login(email, password);
+      
+
+    } else {
+      authObs = this.authService.signup(email, password);
+      this.newUser = false
     }
-    else{
-      this.isInvalid = true
-    }
+
+    authObs.subscribe(
+      resData => {
+        console.log(resData);
+        this.isLoading = false;
+        this.route.navigate(['../home'], { relativeTo: this.router });
+      },
+      errorMessage => {
+        console.log(errorMessage);
+        this.error = errorMessage;
+        this.isLoading = false;
+      }
+    );
+
+    form.reset();
+  }
+
+  newUsers() {
+    this.newUser = true
   }
 
   cancel(): void {

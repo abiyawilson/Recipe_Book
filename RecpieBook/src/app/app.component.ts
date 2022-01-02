@@ -1,5 +1,6 @@
 import { OnInit } from '@angular/core';
 import { Component } from '@angular/core';
+import { AuthenicationService } from './auth/authenication.service';
 import { RecipesService } from './recipes.service';
 import { Recipe } from './recipes/recipe-list/recipe.model';
 
@@ -9,11 +10,9 @@ import { Recipe } from './recipes/recipe-list/recipe.model';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent implements OnInit {
-  constructor(private recipeService: RecipesService) {}
+  constructor(private authService: AuthenicationService) {}
 
-  ngOnInit(): void {}
-
-  // save() {
-  //   this.recipeService.saveRecipe()
-  // }
+  ngOnInit(): void {
+    this.authService.autoLogin();
+  }
 }
