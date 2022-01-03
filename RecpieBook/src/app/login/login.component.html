@@ -2,58 +2,63 @@
   <div class="alert alert-danger col-xs-12" *ngIf="error">
     <p style="text-align: center">{{ error }}</p>
   </div>
-  <div *ngIf="isLoading" style="text-align: center;">
+  <div *ngIf="isLoading" style="text-align: center">
     <app-loading-spinner></app-loading-spinner>
   </div>
-  <div class="row login" *ngIf="!isLoading">
-    <p style="padding-left: 75px">Sign In</p>
-    <div class="col-xs-12">
-      <form  #authForm="ngForm" (ngSubmit)="onSubmit(authForm)">
-        <div class="row">
-          <div class="col-xl form-group">
-            <label for="email">Email</label>
-            <input type="text" id="email" class="form-control"  ngModel
+  <div class="login">
+    <div *ngIf="!isLoading">
+      <p style="text-align: center">{{ !newUser ? "Sign In" : "SignUp" }}</p>
+      <form #authForm="ngForm" (ngSubmit)="onSubmit(authForm)">
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input
+            type="text"
+            id="email"
+            class="form-control"
+            ngModel
             name="email"
             required
-            email />
-          </div>
+            email
+          />
         </div>
-        <div class="row">
-          <div class="col-xl form-group">
-            <label for="password">Password</label>
-            <input
-              type="password"
-              id="password"
-              class="form-control"
-              ngModel
-              name="password"
-              required
-            />
-          </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input
+            type="password"
+            id="password"
+            class="form-control"
+            ngModel
+            name="password"
+            required
+          />
         </div>
-        <div class="row">
-          <div class="col-xs-12" style="padding-left: 40px">
-            <button *ngIf="!newUser" class="btn btn-success" type="submit" [disabled]="!authForm.valid">
-              Login
-            </button>
-            <button *ngIf="newUser" class="btn btn-success" type="submit" [disabled]="!authForm.valid">
-              Sign Up
-            </button>
-            <span style="padding-left: 10px"></span>
-            <button class="btn btn-danger" type="button" (click)="cancel()">
-              Cancel
-            </button>
-          </div>
+        <button
+          *ngIf="!newUser"
+          class="btn btn-success"
+          type="submit"
+          [disabled]="!authForm.valid"
+        >
+          Login
+        </button>
+        <button
+          *ngIf="newUser"
+          class="btn btn-success"
+          type="submit"
+          [disabled]="!authForm.valid"
+        >
+          Sign Up
+        </button>
+        <span style="padding-left: 10px"></span>
+        <button class="btn btn-danger" type="button" (click)="cancel()">
+          Cancel
+        </button>
+        <div class="row orStyle">
+          <p>or</p>
         </div>
-        <div class="row">
-          <div class="col-xs-12" style="padding-left: 100px; padding-top: 5px">
-            <p>or</p>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-xs-12" style="padding-left: 70px">
-            <a style="cursor: pointer" (click) = "newUsers()">New User ?</a>
-          </div>
+        <div class="row orStyle">
+          <a style="cursor: pointer; color: #0083ee" (click)="newUsers()"
+            >New User ?</a
+          >
         </div>
       </form>
     </div>

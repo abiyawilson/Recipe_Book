@@ -1,17 +1,38 @@
 .login {
-  margin-top: 10%;
-  margin-left: 35%;
-  padding-left: 20px;
-  padding-right: 20px;
-  padding-top: 20px;
-  width: 250px;
-  height: 350px;
-  background: rgb(226, 231, 226);
-  opacity: 0.9;
+  margin: auto;
+  padding: 36px;
+  width: 30%;
+  height: auto;
+  align-items: center;
+  background: rgba(226, 231, 226, 0.9);
   color: black;
 }
 
-span{
-  color:red;
-  font-family: 'Times New Roman', Times, serif;
+span {
+  color: red;
+  font-family: "Times New Roman", Times, serif;
+}
+
+.container {
+  margin-top: 7%;
+  width: 100vw;
+  height: auto;
+}
+
+@media screen and (max-width: 768px) {
+  .login {
+    width: 100%;
+  }
+}
+
+form > button {
+  width: 100%;
+  margin-top: 10px;
+}
+
+.orStyle {
+  margin-top: 2px;
+  margin-left: 0.5rem;
+  font-size: 18px;
+  font-family: "Times New Roman", Times, serif;
 }
