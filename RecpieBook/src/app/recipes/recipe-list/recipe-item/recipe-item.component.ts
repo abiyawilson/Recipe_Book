@@ -8,12 +8,11 @@ import { RecipesService } from '../../recipes.service';
   templateUrl: './recipe-item.component.html',
   styleUrls: ['./recipe-item.component.css'],
 })
-export class RecipeItemComponent implements OnInit, OnDestroy {
+export class RecipeItemComponent implements OnInit{
   recipe: { name: string; description: string; image: string }[] = [];
   filteredRecipe: string = '';
   isFetching: boolean = true;
   error: string = '';
-  onRefresh:Subscription
 
   constructor(
     private recipeService: RecipesService,
@@ -43,7 +42,4 @@ export class RecipeItemComponent implements OnInit, OnDestroy {
     this.route.navigate(['../' + id], { relativeTo: this.router });
   }
 
-  ngOnDestroy() {
-    this.onRefresh.unsubscribe();
-  }
 }
