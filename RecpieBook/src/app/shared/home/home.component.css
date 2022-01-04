@@ -3,3 +3,20 @@ h4,
 h3 {
   font-family: "Times New Roman", Times, serif;
 }
+.home {
+  overflow-y: hidden;
+  overflow-x: auto;
+}
+@media (max-width: 768px) {
+  img {
+    width: 100%;
+  }
+}
+.contentStyle {
+  margin-left: 100px;
+}
+@media (max-width: 768px) {
+  .contentStyle {
+    margin: 0;
+  }
+}
