@@ -3,3 +3,9 @@ h4,
 h3 {
   font-family: "Times New Roman", Times, serif;
 }
+.home {
+  /* margin-left: 150px;
+  margin-right: 150px; */
+  overflow-y: hidden;
+  overflow-x: auto;
+}
