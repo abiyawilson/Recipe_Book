@@ -1,38 +1,48 @@
-.login {
-  margin: auto;
-  padding: 36px;
-  width: 30%;
-  height: auto;
-  align-items: center;
-  background: rgba(226, 231, 226, 0.9);
-  color: black;
+.container {
+  margin-top :1%;
+  margin-bottom: 1%;
+  background-repeat: no-repeat;
+  background-image: url("https://files.wallpaperpass.com/2019/10/food%20wallpaper%20186%20-%202048x1152.jpg");
+  background-size: cover;
+}
+
+.header {
+  text-align: center;
+  font-family: "Times New Roman", Times, serif;
+  color: white
 }
 
 span {
   color: red;
+  font-style: italic;
   font-family: "Times New Roman", Times, serif;
 }
 
-.container {
-  margin-top: 7%;
-  width: 100vw;
-  height: auto;
-}
-
-@media screen and (max-width: 768px) {
-  .login {
-    width: 100%;
-  }
-}
-
-form > button {
-  width: 100%;
-  margin-top: 10px;
-}
-
-.orStyle {
-  margin-top: 2px;
-  margin-left: 0.5rem;
-  font-size: 18px;
+label {
+  color: rgb(255, 255, 255);
   font-family: "Times New Roman", Times, serif;
+  font-size: 20px;
 }
+
+input.ng-invalid.ng-touched{
+  border: 1px solid red;
+}
+
+.login-center{
+  padding-left: 25%;
+  padding-right: 25%;
+  padding-top: 10%;
+  padding-bottom:10%;
+}
+
+.center {
+  padding:2%;
+  opacity: 0.90;
+  background-color: rgb(92, 97, 93);
+}
+
+.help-block {
+  color: white
+}
+
+

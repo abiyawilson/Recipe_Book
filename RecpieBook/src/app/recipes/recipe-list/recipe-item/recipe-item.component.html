@@ -1,21 +1,15 @@
 <div class="container">
-  <div class="card recipe-card" *ngFor="let recipe of recipe">
-    <img
-      [src]="recipe.image"
-      class="card-img-top"
-      alt="Card image cap"
-      height="250px"
-      width="250px"
-    />
-    <div class="card-body">
-      <div class="recipe-detail-card">
-        <h5 class="card-title">{{ recipe.name }}</h5>
-        <p class="card-text">{{ recipe.description }}</p>
-      </div>
-      <div>
-        <a (click)="getRecipe(recipe.id)" class="btn btn-primary"
-          >View Details</a
-        >
+  <div class="row row-cols-1 row-cols-md-3 g-4">
+    <div class="col" *ngFor="let recipe of recipe">
+      <div class="card h-100">
+        <img [src]="recipe.image" class="card-img-top" alt="Image not available"  height="250px"  width="250px">
+        <div class="card-body">
+          <h5 class="card-title">{{ recipe.name }}</h5>
+          <p class="card-text">{{ recipe.description }}.</p>
+        </div>
+        <div class="card-footer">
+          <button (click)="getRecipe(recipe.id)" class="btn btn-secondary">View Details</button>
+        </div>
       </div>
     </div>
   </div>

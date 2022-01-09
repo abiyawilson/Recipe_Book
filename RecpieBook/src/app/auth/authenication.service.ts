@@ -71,6 +71,21 @@ export class AuthenicationService {
       );
   }
 
+  forgotPassword(email:string){
+    return this.http.post<string>('https://identitytoolkit.googleapis.com/v1/accounts:sendOobCode?key=AIzaSyBPsPL8zE_fQ_3qrTWoCaEhAzO9ff19z00',
+      {
+        requestType:"PASSWORD_RESET",  
+        email:email
+      }
+    )
+    .pipe(
+      catchError(this.handleError),
+      tap(resData =>{
+        console.log(resData)
+      })
+    )
+  }
+
   autoLogin() {
     const userData: {
       email: string;

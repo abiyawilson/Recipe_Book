@@ -1,24 +1,12 @@
 .container {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  margin-left: 15%;
+  margin-top: 2%;
 }
 
-.recipe-card {
-  width: 18rem;
-  margin-top: 20px;
-  margin-left: 10px;
+.card-footer{
+  text-align: center;
 }
 
-.recipe-detail-card {
-  height: 100px;
+.col {
+  margin-top: 1%;
 }
 
-a {
-  margin-top: 5px;
-}
-
-input {
-  width: 250px;
-}
