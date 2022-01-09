@@ -1,5 +1,4 @@
-import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
+import { Component, OnDestroy, OnInit} from '@angular/core';
 import { Subscription } from 'rxjs';
 import { AuthenicationService } from 'src/app/auth/authenication.service';
 
@@ -25,6 +24,7 @@ export class HeadersComponent implements OnInit , OnDestroy{
   onLogOut(): void {
     this.authService.logout();
   }
+
 
   ngOnDestroy() {
     this.userSub.unsubscribe();

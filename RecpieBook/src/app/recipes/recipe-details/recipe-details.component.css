@@ -1,37 +1,16 @@
-.left,
-.right {
-  width: 50%;
-  position: absolute;
-  z-index: 1;
-  top: 0;
-  overflow-x: hidden;
-}
-
-.left {
-  left: 0;
-  margin-top: 15%;
-  margin-left: 10%;
-}
-
-.right {
-  right: 0;
-  margin-top: 5%;
-  padding-right: 20px;
-  text-align: justify;
-  font-family: "Times New Roman", Times, serif;
+.container {
+  margin-top: 2%;
 }
 
 .image {
-  max-height: 50%;
-  max-width: 50%;
+  max-height: 350px;
+  max-width: 350px;
+  margin-top: 10%;
 }
 
-button {
-  margin-top: 10px;
+.button-row {
+  margin-top: 5%;
 }
 
-.updateButton,
-.deleteButton {
-  margin-top: 20px;
-  margin-left: 20px;
-}
+
+

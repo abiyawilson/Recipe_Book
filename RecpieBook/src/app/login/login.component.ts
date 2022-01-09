@@ -1,5 +1,5 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { Component, OnInit} from '@angular/core';
+import { FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { AuthenicationService, AuthResponseData } from '../auth/authenication.service';
@@ -14,6 +14,10 @@ export class LoginComponent implements OnInit {
   newUser: boolean = false
   isLoading = false;
   error: string = null;
+  email:string;
+  password:string;
+
+  authForm:FormGroup;
 
   constructor(
     private route: Router,
@@ -21,25 +25,27 @@ export class LoginComponent implements OnInit {
     private authService : AuthenicationService
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.authForm = new FormGroup({
+      email: new FormControl(null, [Validators.required]),
+      password: new FormControl(null, [Validators.required]),
+    })
+  }
 
-  onSubmit(form: NgForm) {
-    if (!form.valid) {
-      return;
-    }
-    const email = form.value.email;
-    const password = form.value.password;
+  onSubmit() {
+    this.email = this.authForm.value.email;
+    this.password = this.authForm.value.password;
 
     let authObs: Observable<AuthResponseData>;
 
     this.isLoading = true;
 
     if (!this.newUser) {
-      authObs = this.authService.login(email, password);
+      authObs = this.authService.login(this.email, this.password);
       
 
     } else {
-      authObs = this.authService.signup(email, password);
+      authObs = this.authService.signup(this.email, this.password);
       this.newUser = false
     }
 
@@ -55,7 +61,7 @@ export class LoginComponent implements OnInit {
       }
     );
 
-    form.reset();
+    this.authForm.reset();
   }
 
   newUsers() {
@@ -63,6 +69,7 @@ export class LoginComponent implements OnInit {
   }
 
   cancel(): void {
+    this.authForm.reset();
     this.route.navigate(['../home'], { relativeTo: this.router });
   }
 }

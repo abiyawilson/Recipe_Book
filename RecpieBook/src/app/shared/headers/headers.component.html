@@ -1,50 +1,54 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-dark">
-  <div class="container-fluid">
-    <a class="navbar-brand text-light"  routerLinkActive="active"
-    routerLink="/home">Recipie Book</a>
-    <button
-      class="navbar-toggler"
-      type="button"
-      data-bs-toggle="collapse"
-      data-bs-target="#navbarNavAltMarkup"
-      aria-controls="navbarNavAltMarkup"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
-    >
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-      <div class="navbar-nav">
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+  <a class="navbar-brand" routerLink="/home" href="#" routerLinkActive="active"
+    >Recipe Book</a
+  >
+  <button
+    class="navbar-toggler"
+    type="button"
+    data-toggle="collapse"
+    data-target="#collapsibleNavbar"
+  >
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="collapsibleNavbar">
+    <ul class="navbar-nav">
+      <li class="nav-item">
         <a
           *ngIf="isAuthenticated"
-          class="nav-link text-light"
+          class="nav-link"
           routerLink="/recipe/recipelist"
           routerLinkActive="active"
           >Recipes</a
         >
+      </li>
+      <li class="nav-item">
         <a
           *ngIf="!isAuthenticated"
-          class="nav-link text-light"
+          class="nav-link"
           routerLink="/login"
           routerLinkActive="active"
           >Sign In</a
         >
+      </li>
+      <li class="nav-item">
         <a
           *ngIf="isAuthenticated"
-          class="nav-link text-light"
+          class="nav-link"
           routerLink="/contributor"
           routerLinkActive="active"
           >Contribute</a
         >
+      </li>
+      <li class="nav-item">
         <a
           *ngIf="isAuthenticated"
-          class="nav-link text-light"
+          class="nav-link"
           routerLinkActive="active"
           style="cursor: pointer"
           (click)="onLogOut()"
           >Sign Out</a
         >
-      </div>
-    </div>
+      </li>
+    </ul>
   </div>
 </nav>

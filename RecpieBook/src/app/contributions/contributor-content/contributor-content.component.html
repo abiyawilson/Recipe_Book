@@ -1,9 +1,9 @@
 <div class="container">
-  <div>
+  <div class="header">
     <h3>Add your Recipe</h3>
   </div>
   <form (ngSubmit)="onAddRecipe()" [formGroup]="contributionForm">
-    <div class="mb-3">
+    <div>
       <label for="name">Recipe Name</label>
       <input
         type="text"
@@ -20,7 +20,7 @@
         >**This field is required.</span
       >
     </div>
-    <div class="mb-3">
+    <div>
       <label for="name">Author</label>
       <input
         type="text"
@@ -37,7 +37,7 @@
         >**This Field is required</span
       >
     </div>
-    <div class="mb-3">
+    <div>
       <label for="description">Description</label>
       <input
         type="text"
@@ -54,7 +54,7 @@
         >**This Field is required</span
       >
     </div>
-    <div class="mb-3">
+    <div>
       <label for="image">Image Link</label>
       <input
         type="text"
@@ -72,10 +72,10 @@
         >**This Field is required</span
       >
     </div>
-    <div class="mb-3" *ngIf="contributionForm.get('image').valid">
+    <div *ngIf="contributionForm.get('image').valid">
         <img [src]="imagePath.value" class="img-responsive" height="250px" width="250px">
     </div>
-    <div formArrayName="integridents" class="mb-3">
+    <div formArrayName="integridents">
       <h5>Integridents</h5>
 
       <div
@@ -91,7 +91,7 @@
         +
       </button>
     </div>
-    <div formArrayName="procedure" class="mb-3">
+    <div formArrayName="procedure">
       <h5>Procedure</h5>
       <div
         class="form-group"
@@ -103,7 +103,7 @@
         +
       </button>
     </div>
-    <div class="col-xs-12" style="padding-left: 40%">
+    <div style="text-align: center; padding-bottom: 3%;">
       <button
         [disabled]="!contributionForm.valid"
         class="btn btn-success"

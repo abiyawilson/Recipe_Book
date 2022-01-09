@@ -20,6 +20,7 @@ import { FilterPipe } from './filter.pipe';
 import { SpinnerComponent } from './shared/spinner/spinner.component';
 import { AuthInterceptorService } from './auth/auth-interceptor.service';
 import { RecipesService } from './recipes/recipes.service';
+import { ForgotPasswordComponent } from './login/forgot-password/forgot-password.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { RecipesService } from './recipes/recipes.service';
     UpdateRecipeComponent,
     FilterPipe,
     SpinnerComponent,
+    ForgotPasswordComponent,
   ],
 
   imports: [

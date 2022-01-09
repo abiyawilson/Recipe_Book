@@ -1,36 +1,48 @@
-<div class="container">
-  <div class="alert alert-danger col-xs-12" *ngIf="error">
-    <p style="text-align: center">{{ error }}</p>
-  </div>
-  <div *ngIf="isLoading" style="text-align: center">
-    <app-loading-spinner></app-loading-spinner>
-  </div>
-  <div class="login">
-    <div *ngIf="!isLoading">
-      <p style="text-align: center">{{ !newUser ? "Sign In" : "SignUp" }}</p>
-      <form #authForm="ngForm" (ngSubmit)="onSubmit(authForm)">
+<div class="container" *ngIf="!isLoading">
+  <div class="login-center">
+    <div class="center">
+      <div class="header">
+        <h3>{{ !newUser ? "Sign In" : "SignUp" }}</h3>
+      </div>
+      <div class="alert alert-danger" *ngIf="isAlert">
+        <p style="text-align: center">A password reset link sent your email.</p>
+      </div>
+      <form [formGroup]="authForm" (ngSubmit)="onSubmit()">
         <div class="form-group">
           <label for="email">Email</label>
           <input
             type="text"
             id="email"
             class="form-control"
-            ngModel
-            name="email"
-            required
+            formControlName="email"
             email
           />
+          <span
+          class="help-block"
+          *ngIf="
+            !authForm.get('email').valid &&
+            authForm.get('email').touched
+          "
+          >**This field is required.</span
+        >
         </div>
         <div class="form-group">
           <label for="password">Password</label>
           <input
             type="password"
             id="password"
+            autocomplete="off"
             class="form-control"
-            ngModel
-            name="password"
-            required
+            formControlName="password"
           />
+          <span
+          class="help-block"
+          *ngIf="
+            !authForm.get('password').valid &&
+            authForm.get('password').touched
+          "
+          >**This field is required.</span
+        >
         </div>
         <button
           *ngIf="!newUser"
@@ -52,14 +64,21 @@
         <button class="btn btn-danger" type="button" (click)="cancel()">
           Cancel
         </button>
-        <div class="row orStyle">
-          <p>or</p>
-        </div>
-        <div class="row orStyle">
-          <a style="cursor: pointer; color: #0083ee" (click)="newUsers()"
-            >New User ?</a
+        <p>
+          <!-- <a style="cursor: pointer; color: #ffffff" (click)="newUsers()"
+            >Forgot Password ?</a
+          > -->
+          <a
+          style="color: #ffffff"
+          routerLink="/forgotPassword"
+          >Forgot Password ?</a
+        >
+        </p>
+        <p>
+          <a style="cursor: pointer; color: #ffffff" (click)="newUsers()"
+            >Create a new account</a
           >
-        </div>
+        </p>
       </form>
     </div>
   </div>

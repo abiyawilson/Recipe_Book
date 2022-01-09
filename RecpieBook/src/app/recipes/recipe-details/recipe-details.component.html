@@ -1,37 +1,41 @@
-<div class="container">
-  <div *ngIf="!isFetching">
-    <div>
+<div class="container" *ngIf="!isFetching">
+  <div class="row">
+    <div class="col">
       <button type="button" class="btn btn-secondary" (click)="goBack()">
         Back
       </button>
     </div>
-    <div class="left">
+  </div>
+  <div class="row">
+    <div class="col">
       <img
         [src]="recipe.image"
         alt="{{ recipe.name }}"
         class="img-responsive image"
       />
-      <div class="updateButton">
-        <button
-          *ngIf=" owner"
-          type="button"
-          class="btn btn-success"
-          (click)="onUpdate()"
-        >
-          Update
-        </button>
-        <span style="padding-left: 10px"></span>
-        <button
-          *ngIf=" owner"
-          type="button"
-          class="btn btn-danger"
-          (click)="onDelete()"
-        >
-          Delete
-        </button>
+      <div class="row button-row"  style="text-align: left;">
+        <div class="col">
+          <button
+            *ngIf="owner"
+            type="button"
+            class="btn btn-success"
+            (click)="onUpdate()"
+          >
+            Update
+          </button>
+          <span style="padding-left: 10px"></span>
+          <button
+            *ngIf="owner"
+            type="button"
+            class="btn btn-danger"
+            (click)="onDelete()"
+          >
+            Delete
+          </button>
+        </div>
       </div>
     </div>
-    <div class="right">
+    <div class="col">
       <h1>{{ recipe.name }}</h1>
       <p>
         <i>Author: {{ recipe.author }}</i>
@@ -48,3 +52,4 @@
     </div>
   </div>
 </div>
+
