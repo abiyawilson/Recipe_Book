@@ -21,6 +21,8 @@ import { SpinnerComponent } from './shared/spinner/spinner.component';
 import { AuthInterceptorService } from './auth/auth-interceptor.service';
 import { RecipesService } from './recipes/recipes.service';
 import { ForgotPasswordComponent } from './login/forgot-password/forgot-password.component';
+import { AlertPlaceHolderDirective } from './shared/placeHolders/alert-place-holder.directive';
+import { AlertComponent } from './shared/alert/alert.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +40,8 @@ import { ForgotPasswordComponent } from './login/forgot-password/forgot-password
     FilterPipe,
     SpinnerComponent,
     ForgotPasswordComponent,
+    AlertPlaceHolderDirective,
+    AlertComponent,
   ],
 
   imports: [
