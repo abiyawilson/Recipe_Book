@@ -1,11 +1,9 @@
+<ng-template appAlertPlaceHolder></ng-template>
 <div class="container" *ngIf="!isLoading">
   <div class="login-center">
     <div class="center">
       <div class="header">
         <h3>{{ !newUser ? "Sign In" : "SignUp" }}</h3>
-      </div>
-      <div class="alert alert-danger" *ngIf="isAlert">
-        <p style="text-align: center">A password reset link sent your email.</p>
       </div>
       <form [formGroup]="authForm" (ngSubmit)="onSubmit()">
         <div class="form-group">
